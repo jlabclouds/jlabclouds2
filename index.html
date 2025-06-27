@@ -46,9 +46,38 @@
         <div class="dropdn-btn">
           <a href="index.html">JLabs</a>
         </div>
-        <div class="dropdn-btn">
-          <a href="#" alt="Index">Index</a>
+        <div class="dropdown">
+            <button id="indexDropdownBtn" type="button">
+                Index
+            </button>
+            <div id="indexDropdownMenu" class="dropdown-menu" style="display: none;">
+                <a href="https://github.com/JesseDev3/linux" target="_blank" rel="noopener noreferrer">Linux QS</a>
+                <a href="https://github.com/jlabclouds" target="_blank" rel="noopener noreferrer">Github</a>
+                <a href="RHCSA" target="_blank" rel="noopener noreferrer">RHCSA</a>
+                <a href="GCPPCA" target="_blank" rel="noopener noreferrer">GCPPCA</a>
+                <a href="IsaacSim" target="_blank" rel="noopener noreferrer">IsaacSim</a>
+                <a href="FrameworkTemplates/ReadMe" target="_blank" rel="noopener noreferrer">Templates</a>
+            </div>
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var btn = document.getElementById('indexDropdownBtn');
+                var menu = document.getElementById('indexDropdownMenu');
+                btn.addEventListener('click', function() {
+                    if (menu.style.display === 'none' || menu.style.display === '') {
+                        menu.style.display = 'block';
+                    } else {
+                        menu.style.display = 'none';
+                    }
+                });
+                // Optional: Hide menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!btn.contains(event.target) && !menu.contains(event.target)) {
+                        menu.style.display = 'none';
+                    }
+                });
+            });
+        </script>
         <div style="flex: 1; display: flex; justify-content: center;">
           <div class="search-bar" style="min-width: 200px; max-width: 400px;">
         <input type="text" placeholder="Search..." />
