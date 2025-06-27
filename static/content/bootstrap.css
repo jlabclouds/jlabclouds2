@@ -276,6 +276,7 @@ table {
   }
   .navbar {
     display: none;
+    width: 99%;
   }
   .table td,
   .table th {
