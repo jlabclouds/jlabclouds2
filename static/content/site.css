@@ -50,3 +50,19 @@ input[type="checkbox"].input-validation-error {
   border-radius: 8px;
   background-color: #00e448;
 }
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin: 16px;
+    background-color: #fff;
+    height: 200px;
+    max-width: 300px;
+    text-align: center;
+    flex: 1 1 calc(33% - 32px); /* Responsive card width */
+    min-width: 250px; /* Minimum width for smaller screens */
+    transition: transform 0.2s;
+    box-sizing: border-box;
+    gap: 20px;
+}
