@@ -8,55 +8,34 @@
     <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
     <script src="/static/scripts/modernizr-2.6.2.js"></script>
 </head>
-<!--    
-<div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="/" class="navbar-brand">Jlabs</a>
+    
+<nav class="navbar navbar-inverse navbar-fixed-top" style="padding: 0;"></nav>
+    <div class="container-fluid" style="display: flex; align-items: center; justify-content: space-between; min-height: 60px;">
+        <!-- Left: Brand and Index -->
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <a class="navbar-brand" href="index.html" style="font-weight: bold;">JLabs</a>
+            <a class="nav-link" href="#" style="color: #fff;">Index</a>
+        </div>
+        <!-- Center: Search Bar -->
+        <form class="navbar-form" style="flex: 1; display: flex; justify-content: center; margin: 0;">
+            <div class="form-group" style="min-width: 200px; max-width: 400px; width: 100%;">
+                <input type="text" class="form-control" placeholder="Search..." style="width: 100%;">
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('home') }}">Home</a></li>
-                    <li><a href="{{ url_for('about') }}">Index</a></li>
-                    <li><a href="{{ url_for('contact') }}">Account</a></li>
-                </ul>
-            </div>
+        </form>
+        <!-- Right: Apps and Account -->
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <a class="nav-link" href="#" style="color: #fff;">Apps</a>
+            <a class="nav-link" href="#" style="color: #fff;">Account</a>
         </div>
     </div>
--->
-    <div class="widget" style="display: flex; align-items: center; justify-content: center;">
-        <div class="dropdn-btn">
-          <a href="index.html">Home</a>
-        </div>
-        <div class="dropdn-btn">
-          <a href="#" alt="Index">Index</a>
-        </div>
-        <div style="flex: 1; display: flex; justify-content: center;">
-          <div class="search-bar" style="min-width: 200px; max-width: 400px;">
-        <input type="text" placeholder="Search..." />
-          </div>
-        </div>
-        <div style="margin-left:auto; display:flex; gap:10px;">
-          <div class="dropdn-btn">
-        <a href="#" alt="Apps">Apps</a>
-          </div>
-          <div class="dropdn-btn">
-        <a href="#" alt="Account">Account</a>
-          </div>
-        </div>
-    </div>
+</nav>
 
-    <div class="container body-content">
-      <div class="jumbotron">
-    <h1>Flask</h1>
-    <p class="lead">Flask is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-</div>
+<div class="container body-content" style="margin-top: 80px;">
+    <div class="jumbotron">
+        <h1>Flask</h1>
+        <p class="lead">Flask is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+    </div>
 
 <div class="row">
     <div class="col-md-4">
