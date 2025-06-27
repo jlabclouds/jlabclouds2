@@ -41,53 +41,38 @@
             </div>
         </div>
     </div>
--->    
-<!-- Widget Navigation Bar -->
-<div class="widget">
-    <a href="index.html" style="font-weight: bold; margin-right: 16px;">JLabs</a>
-    
-    <div class="dropdown" style="position: relative;">
-        <button type="button" class="btn btn-default" onclick="toggleDropdown('dropdown-index')">Index</button>
-        <div id="dropdown-index" class="dropdown-menu" style="display: none; position: absolute; left: 0; top: 100%; min-width: 160px; z-index: 1000;">
-            <a href="https://github.com/JesseDev3/linux" target="_blank" rel="noopener noreferrer">Linux QS</a>
-            <a href="https://github.com/jlabclouds" target="_blank" rel="noopener noreferrer">Github</a>
-            <a href="RHCSA" target="_blank" rel="noopener noreferrer">RHCSA</a>
-            <a href="GCPPCA" target="_blank" rel="noopener noreferrer">GCPPCA</a>
-            <a href="IsaacSim" target="_blank" rel="noopener noreferrer">IsaacSim</a>
-            <a href="FrameworkTemplates/ReadMe" target="_blank" rel="noopener noreferrer">Templates</a>
+-->
+    <div class="widget" style="display: flex; align-items: center; justify-content: center;">
+        <div class="dropdn-btn">
+          <a href="index.html">JLabs</a>
+        </div>
+        <div class="dropdn-btn">
+          <a href="#" alt="Index">Index</a>
+        </div>
+        <div style="flex: 1; display: flex; justify-content: center;">
+          <div class="search-bar" style="min-width: 200px; max-width: 400px;">
+        <input type="text" placeholder="Search..." />
+          </div>
+        </div>
+        <div style="margin-left:auto; display:flex; gap:10px;">
+          <div class="dropdn-btn">
+        <a href="#" alt="Apps">Apps</a>
+          </div>
+          <div class="dropdn-btn">
+        <a href="#" alt="Account">Account</a>
+          </div>
         </div>
     </div>
-    
-    <div class="search-bar" style="min-width: 200px; max-width: 400px; flex: 1; display: flex; justify-content: center;">
-        <input type="text" placeholder="Search..." class="form-control" />
-    </div>
-    
-    <div class="dropdown" style="position: relative;">
-        <button type="button" class="btn btn-default" onclick="toggleDropdown('dropdown-apps')">Apps</button>
-        <div id="dropdown-apps" class="dropdown-menu" style="display: none; position: absolute; left: 0; top: 100%; min-width: 160px; z-index: 1000;">
-            <a href="https://jlabclouds.github.io/jlabreact-ts/" target="_blank" rel="noopener noreferrer">React TS</a>
-            <a href="https://jlabclouds.github.io/jlabreact/" target="_blank" rel="noopener noreferrer">React</a>
-        </div>
-    </div>
-    
-    <div class="dropdown" style="position: relative;">
-        <button type="button" class="btn btn-default" onclick="toggleDropdown('dropdown-account')">Account</button>
-        <div id="dropdown-account" class="dropdown-menu" style="display: none; position: absolute; left: 0; top: 100%; min-width: 120px; z-index: 1000;">
-            <a href="#">Index</a>
-        </div>
-    </div>
-</div>
-
-<!-- Main Content -->
-<div class="container body-content">
-  <div class="jumbotron">
+    <div class="container body-content">
+      <div class="jumbotron">
     <h1>Flask</h1>
-    <p class="lead">Shareholder / Admin Portal</p>
-    <p>Note LTS & EOL.</p>
-    <p>Refresh on quadratic formulas and equations, linear functions, trig and discrete math (probability will help later with hadamard operation and Grovers search problem in Q#)</p>
-    <p>I would like to create a robot such as Johnny 5 or Reachy 2</p>
+    <p class="lead">Flask is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+            <p>Shareholder / Admin Portal</p>
+            <p>Note LTS & EOL.</p>
+            <p>Refresh on quadratic formulas and equations, linear functions, trig and discrete math (probability will help later with hadamard operation and Grovers search problem in Q#)</p>
+            <p>I would like to create a robot such as Johnny 5 or Reachy 2</p>
+    </p>
     <p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-  </div>
 </div>
 
 <div class="row">
@@ -264,26 +249,6 @@
     <script src="/static/scripts/jquery-1.10.2.js"></script>
     <script src="/static/scripts/bootstrap.js"></script>
     <script src="/static/scripts/respond.js"></script>
-<script>
-function toggleDropdown(id) {
-    // Hide all dropdowns first
-    document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
-        if (menu.id !== id) menu.style.display = 'none';
-    });
-    // Toggle the selected dropdown
-    var menu = document.getElementById(id);
-    if (menu) {
-        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
-    }
-}
-// Hide dropdowns when clicking outside
-document.addEventListener('click', function(event) {
-    if (!event.target.closest('.dropdown')) {
-        document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
-            menu.style.display = 'none';
-        });
-    }
-});
-</script>
+
 </body>
 </html>
