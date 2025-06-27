@@ -9,10 +9,9 @@
     <script src="/static/scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-<!--
 <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
+            <div class="navbar-header" style="display: flex; align-items: center;">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -22,14 +21,26 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Index</a></li>
-                    <li><a href="#">Apps</a></li>
-                    <li><a href="#">Account</a></li>
+                    <div class="dropdn-btn">
+                        <a href="index.html">JLabs</a>
+                    </div>
+                    <div class="dropdn-btn">
+                        <a href="#" alt="Index">Index</a>
+                    </div>
+                    <div class="search-bar" style="min-width: 200px; max-width: 400px;">
+                        <input type="text" placeholder="Search..." />
+                    </div>
+                    <div class="dropdn-btn">
+                        <a href="#" alt="Apps">Apps</a>
+                    </div>
+                    <div class="dropdn-btn">
+                        <a href="#" alt="Account">Account</a>
+                    </div>
                 </ul>
             </div>
         </div>
     </div>
--->
+    <!-- Main content area
     <div class="widget" style="display: flex; align-items: center; justify-content: center;">
         <div class="dropdn-btn">
           <a href="index.html">JLabs</a>
@@ -51,6 +62,7 @@
           </div>
         </div>
     </div>
+-->
     <div class="container body-content">
       <div class="jumbotron">
     <h1>Flask</h1>
