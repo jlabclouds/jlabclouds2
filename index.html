@@ -59,39 +59,29 @@
                 <a href="FrameworkTemplates/ReadMe" target="_blank" rel="noopener noreferrer">Templates</a>
             </div>
         </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                var btn = document.getElementById('indexDropdownBtn');
-                var menu = document.getElementById('indexDropdownMenu');
-                btn.addEventListener('click', function() {
-                    if (menu.style.display === 'none' || menu.style.display === '') {
-                        menu.style.display = 'block';
-                    } else {
-                        menu.style.display = 'none';
-                    }
-                });
-                // Optional: Hide menu when clicking outside
-                document.addEventListener('click', function(event) {
-                    if (!btn.contains(event.target) && !menu.contains(event.target)) {
-                        menu.style.display = 'none';
-                    }
-                });
-            });
-        </script>
+
         <div style="flex: 1; display: flex; justify-content: center;">
           <div class="search-bar" style="min-width: 200px; max-width: 400px;">
         <input type="text" placeholder="Search..." />
           </div>
         </div>
-        <div style="margin-left:auto; display:flex; gap:10px;">
-          <div class="dropdn-btn">
-        <a href="#" alt="Apps">Apps</a>
-          </div>
-          <div class="dropdn-btn">
-        <a href="#" alt="Account">Account</a>
-          </div>
+        <div class="dropdown">
+            <button id="appsDropdownBtn" type="button">
+                Apps
+            </button>
+            <div id="appsDropdownMenu" class="dropdown-menu" style="display: none;">
+                <a href="https://jlabclouds.github.io/jlabreact-ts/" target="_blank" rel="noopener noreferrer">React TS</a>
+                <a href="https://jlabclouds.github.io/jlabreact/" target="_blank" rel="noopener noreferrer">React</a>
         </div>
-    </div>
+        </div>
+        <div class="dropdown">
+            <button id="accountDropdownBtn" type="button">
+                Account
+            </button>
+            <div id="accountDropdownMenu" class="dropdown-menu" style="display: none;">
+                <a href=""></a>
+            </div>
+        </div>
     <div class="container body-content">
       <div class="jumbotron">
     <h1>Flask</h1>
@@ -277,6 +267,24 @@
     <script src="/static/scripts/jquery-1.10.2.js"></script>
     <script src="/static/scripts/bootstrap.js"></script>
     <script src="/static/scripts/respond.js"></script>
-
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var btn = document.getElementById('indexDropdownBtn');
+                var menu = document.getElementById('indexDropdownMenu');
+                btn.addEventListener('click', function() {
+                    if (menu.style.display === 'none' || menu.style.display === '') {
+                        menu.style.display = 'block';
+                    } else {
+                        menu.style.display = 'none';
+                    }
+                });
+                // Optional: Hide menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!btn.contains(event.target) && !menu.contains(event.target)) {
+                        menu.style.display = 'none';
+                    }
+                });
+            });
+        </script>
 </body>
 </html>
