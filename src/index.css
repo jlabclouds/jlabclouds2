@@ -58,7 +58,7 @@ button:focus-visible {
         align-items: center;
         gap: 10px;
         padding: 10px;
-        border: 1px solid #ccc;
+        border: 1px solid #09f544;
         border-radius: 8px;
         width: 300px;
       }

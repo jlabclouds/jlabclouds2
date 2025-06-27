@@ -5,149 +5,17 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React + TS</title>
-    <style>
-      .banner {
-        background-image: url('https://cdn.pixabay.com/photo/2021/09/12/07/58/banner-6617553_960_720.jpg');
-        height: 75px;
-        background-size: cover;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-      }  
-      .banner h1 {
-        font-size: 2em;
-        margin: 0;
-      }   
-      .widget {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        background-color: #00e448;
-      }
-      .profile {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .profile img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-      }
-      .search-bar input {
-        width: 100%;
-        padding: 5px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-      }
-      .dropdn-btn {
-        padding: 5px;
-        border-radius: 4px;
-        background-color: #f0f0f0
-      }
-      .dropdown {
-    position: relative;
-}
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 10px;
-    z-index: 1000;
-    display: block;
-}
-main {
-    flex: 1; /* Allow main to grow and fill the space */
-    gap: 20px;
-    flex-wrap: wrap;
-    flex-direction: row;
-    display: flex;
-    padding: 20px;
-    background-color: #d111a1;
-    min-height: calc(100vh - 200px); /* Adjust for header and footer */
-}
-nav {
-    margin-bottom: 20px;
-}
-nav a {
-    margin-right: 15px;
-    text-decoration: none;
-    color: #47cc4c;
-}
-nav a:hover {
-    text-decoration: underline;
-}
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background-color: #4CAF50;
-    margin-top: auto;
-    width: 100%;            
-}
-.card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 16px;
-    margin: 16px;
-    background-color: #fff;
-    height: 200px;
-    max-width: 300px;
-    text-align: center;
-    flex: 1 1 calc(33% - 32px); /* Responsive card width */
-    min-width: 250px; /* Minimum width for smaller screens */
-    transition: transform 0.2s;
-    box-sizing: border-box;
-    gap: 20px;
-}
-.card h2 {
-    font-size: 1.5em;
-    margin-bottom: 12px;
-    color: #333;
-}
-.card select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-.card button {
-    padding: 10px 16px;
-    margin: 4px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007BFF;
-    color: #fff;
-    cursor: pointer;
-    font-size: 1em;
-}
-.card button:hover {
-    background-color: #0056b3;
-}
-.card p {
-    margin: 0;
-}
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-}
-    </style>
+    <link rel="stylesheet" type="text/css" href="src/index.css" />
   </head>
-  <body>
+  <main>
     <div class="banner">
         <h1>Welcome to JLabs</h1>
     </div>
     <div id="root">
       <div class="widget" style="display: flex; align-items: center; justify-content: center;">
+        <div class="dropdn-btn">
+          <a href="index.html">Home</a>
+        </div>
         <div class="dropdn-btn">
           <a href="#" alt="Index">Index</a>
         </div>
@@ -166,12 +34,12 @@ footer {
         </div>
         </div>
     </div>
-  </div>
+    </div>
           <div class="styled-paragraph">
             <p>Welcome to JLabs!</p>
             <p>Shareholder / Admin Portal</p>
             <p>Note LTS & EOL.
-                <p>Refresh on quadratic formulas and equations, linear functions, trig and discrete math(probability will help later with hadamard operation and Grovers search problem in Q#)</p>
+                <p>Refresh on quadratic formulas and equations, linear functions, trig and discrete math (probability will help later with hadamard operation and Grovers search problem in Q#)</p>
                 <p>I would like to create a robot such as Johnny 5 or a Reachy 2</p>
         </div>
         
@@ -332,5 +200,5 @@ footer {
                 </a>
             </div>
     <script type="module" src="/src/main.tsx"></script>
-  </body>
+        </main>
 </html>
