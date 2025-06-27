@@ -47,10 +47,10 @@
           <a href="index.html">JLabs</a>
         </div>
         <div class="dropdown">
-            <button id="indexDropdownBtn" type="button">
+            <button id="DropdownBtn" type="button">
                 Index
             </button>
-            <div id="indexDropdownMenu" class="dropdown-menu" style="display: none;">
+            <div id="DropdownMenu" class="dropdown-menu" style="display: none;">
                 <a href="https://github.com/JesseDev3/linux" target="_blank" rel="noopener noreferrer">Linux QS</a>
                 <a href="https://github.com/jlabclouds" target="_blank" rel="noopener noreferrer">Github</a>
                 <a href="RHCSA" target="_blank" rel="noopener noreferrer">RHCSA</a>
@@ -64,24 +64,21 @@
           <div class="search-bar" style="min-width: 200px; max-width: 400px;">
         <input type="text" placeholder="Search..." />
           </div>
-        </div>
         <div class="dropdown">
-            <button id="appsDropdownBtn" type="button">
+            <button id="DropdownBtn" type="button">
                 Apps
             </button>
-            <div id="appsDropdownMenu" class="dropdown-menu" style="display: none;">
+            <div id="DropdownMenu" class="dropdown-menu" style="display: none;">
                 <a href="https://jlabclouds.github.io/jlabreact-ts/" target="_blank" rel="noopener noreferrer">React TS</a>
                 <a href="https://jlabclouds.github.io/jlabreact/" target="_blank" rel="noopener noreferrer">React</a>
-        </div>
-        </div>
+            </div>
         <div class="dropdown">
-            <button id="accountDropdownBtn" type="button">
+            <button id="DropdownBtn" type="button">
                 Account
             </button>
-            <div id="accountDropdownMenu" class="dropdown-menu" style="display: none;">
-                <a href=""></a>
+            <div id="DropdownMenu" class="dropdown-menu" style="display: none;">
+                <a href="#">Index</a>
             </div>
-        </div>
     <div class="container body-content">
       <div class="jumbotron">
     <h1>Flask</h1>
@@ -269,8 +266,8 @@
     <script src="/static/scripts/respond.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                var btn = document.getElementById('indexDropdownBtn');
-                var menu = document.getElementById('indexDropdownMenu');
+                var btn = document.getElementById('DropdownBtn');
+                var menu = document.getElementById('DropdownMenu');
                 btn.addEventListener('click', function() {
                     if (menu.style.display === 'none' || menu.style.display === '') {
                         menu.style.display = 'block';
