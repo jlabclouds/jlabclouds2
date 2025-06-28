@@ -66,3 +66,9 @@ input[type="checkbox"].input-validation-error {
     box-sizing: border-box;
     gap: 20px;
 }
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
