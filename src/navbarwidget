@@ -1,0 +1,262 @@
+import { useState, useRef, useEffect } from 'react'
+import reactLogo from './assets/react.svg'
+import './App.css'
+
+function App() {
+  const [user, setUser] = useState({
+    imageUrl: 'https://i.pravatar.cc/40',
+    imageSize: 40,
+  });
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [appsOpen, setAppsOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+
+  const apps = [
+    { name: 'Mail', url: '#' },
+    { name: 'Calendar', url: '#' },
+    { name: 'Docs', url: '#' },
+  ];
+
+  const profileOptions = [
+    { name: 'Profile', url: '#' },
+    { name: 'Settings', url: '#' },
+    { name: 'Logout', url: '#' },
+  ];
+
+  // Refs for dropdowns
+  const appsRef = useRef<HTMLDivElement>(null);
+  const profileRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        appsRef.current &&
+        !appsRef.current.contains(event.target as Node) &&
+        profileRef.current &&
+        !profileRef.current.contains(event.target as Node)
+      ) {
+        setAppsOpen(false);
+        setProfileOpen(false);
+      } else if (
+        appsRef.current &&
+        !appsRef.current.contains(event.target as Node)
+      ) {
+        setAppsOpen(false);
+      } else if (
+        profileRef.current &&
+        !profileRef.current.contains(event.target as Node)
+      ) {
+        setProfileOpen(false);
+      }
+    }
+
+    if (appsOpen || profileOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [appsOpen, profileOpen]);
+
+  function handleAppsClick() {
+    setAppsOpen(open => !open);
+    setProfileOpen(false);
+  }
+  function handleProfileClick() {
+    setProfileOpen(open => !open);
+    setAppsOpen(false);
+  }
+
+  return (
+    <div
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        zIndex: 100,
+        background: '#282c34',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          padding: '1rem 2rem',
+          borderRadius: '18px',
+          gap: '1.5rem',
+          maxWidth: '480px',
+          width: '100%',
+          boxSizing: 'border-box',
+          justifyContent: 'space-between',
+          margin: '1.5rem auto',
+          background: 'rgba(255,255,255,0.07)',
+          boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.18)',
+          border: '1px solid rgba(255,255,255,0.18)',
+          backdropFilter: 'blur(8px)',
+        }}
+      >
+        {/* React Logo on the left */}
+        <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
+          <img src={reactLogo} className="logo react" alt="React logo" style={{ height: 40, filter: 'drop-shadow(0 2px 8px #61dafb88)' }} />
+        </a>
+
+        {/* Search bar in the middle */}
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchQuery}
+          onChange={e => setSearchQuery(e.target.value)}
+          style={{
+        flex: 1,
+        minWidth: 0,
+        padding: '0.5rem 1rem',
+        borderRadius: '20px',
+        border: '1px solid #61dafb',
+        fontSize: '1rem',
+        maxWidth: '220px',
+        background: 'rgba(255,255,255,0.85)',
+        boxShadow: '0 1px 4px rgba(97,218,251,0.08)',
+        outline: 'none',
+        transition: 'border 0.2s',
+          }}
+        />
+
+        {/* Apps Dropdown */}
+        <div style={{ position: 'relative' }} ref={appsRef}>
+          <button
+        onClick={handleAppsClick}
+        style={{
+          background: 'linear-gradient(135deg, #61dafb 60%, #282c34 100%)',
+          color: '#fff',
+          border: 'none',
+          borderRadius: '50%',
+          width: 40,
+          height: 40,
+          cursor: 'pointer',
+          fontSize: '1.5rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 2px 8px rgba(97,218,251,0.15)',
+          transition: 'box-shadow 0.2s',
+        }}
+        aria-label="Apps"
+          >
+        <span style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>☰</span>
+          </button>
+          {appsOpen && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '110%',
+            right: 0,
+            background: '#fff',
+            color: '#222',
+            borderRadius: '10px',
+            boxShadow: '0 4px 16px rgba(97,218,251,0.18)',
+            minWidth: '120px',
+            zIndex: 10,
+            padding: '0.5rem 0',
+            border: '1px solid #61dafb22',
+          }}
+        >
+          {apps.map(app => (
+            <a
+          key={app.name}
+          href={app.url}
+          style={{
+            display: 'block',
+            padding: '0.5rem 1rem',
+            color: '#222',
+            textDecoration: 'none',
+            borderBottom: '1px solid #eee',
+            transition: 'background 0.15s',
+          }}
+          onClick={() => setAppsOpen(false)}
+          onMouseOver={e => (e.currentTarget.style.background = '#eafaff')}
+          onMouseOut={e => (e.currentTarget.style.background = 'transparent')}
+            >
+          {app.name}
+            </a>
+          ))}
+        </div>
+          )}
+        </div>
+
+        {/* Profile on the right */}
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: '0.5rem' }} ref={profileRef}>
+          <button
+        onClick={handleProfileClick}
+        style={{
+          background: 'none',
+          border: 'none',
+          padding: 0,
+          cursor: 'pointer',
+          borderRadius: '50%',
+          outline: profileOpen ? '2px solid #61dafb' : 'none',
+          boxShadow: profileOpen ? '0 0 0 4px #61dafb33' : 'none',
+          transition: 'box-shadow 0.2s',
+        }}
+        aria-label="Profile"
+          >
+        <img
+          src={user.imageUrl}
+          alt={'Photo of '}
+          style={{
+            width: user.imageSize,
+            height: user.imageSize,
+            borderRadius: '50%',
+            objectFit: 'cover',
+            border: '2px solid #61dafb',
+            display: 'block',
+            boxShadow: '0 2px 8px #61dafb22',
+          }}
+        />
+          </button>
+          {profileOpen && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '110%',
+            right: 0,
+            background: '#fff',
+            color: '#222',
+            borderRadius: '10px',
+            boxShadow: '0 4px 16px rgba(97,218,251,0.18)',
+            minWidth: '140px',
+            zIndex: 10,
+            padding: '0.5rem 0',
+            border: '1px solid #61dafb22',
+          }}
+        >
+          {profileOptions.map(option => (
+            <a
+          key={option.name}
+          href={option.url}
+          style={{
+            display: 'block',
+            padding: '0.5rem 1rem',
+            color: '#222',
+            textDecoration: 'none',
+            borderBottom: '1px solid #eee',
+            transition: 'background 0.15s',
+          }}
+          onClick={() => setProfileOpen(false)}
+          onMouseOver={e => (e.currentTarget.style.background = '#eafaff')}
+          onMouseOut={e => (e.currentTarget.style.background = 'transparent')}
+            >
+          {option.name}
+            </a>
+          ))}
+        </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
