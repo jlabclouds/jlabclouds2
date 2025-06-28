@@ -1,12 +1,3 @@
-// /*
-//    **Secure Login Implementation Guidelines**
-
-//    - **Never hardcode usernames or passwords** in frontend or backend code.
-//    - **Authentication logic** should always be handled securely on the server side.
-//    - **Frontend Example (React):**
-
-       // ```jsx
-        // LoginForm.jsx
         import React, { useState } from 'react';
 
         function LoginForm() {
@@ -45,4 +36,3 @@
         }
 
         export default LoginForm;
- //    ```
