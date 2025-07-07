@@ -34,27 +34,27 @@
     <h1>Flask</h1>
     <p class="lead">Getting started</p>
 ````js
-<p cat <<EOF | sudo tee ~/container-images/jlabs-example-ui/Dockerfile />
-# syntax=docker/dockerfile:1
-FROM node:lts-alpine
-WORKDIR /app
-COPY . .
-RUN yarn install --production
-CMD ["node", "src/index.js"]
-EXPOSE 3000
-EOF
-cd ~/container-images/jlabs-example-ui
-git clone https://github.com/docker/getting-started-app.git
-docker/podman build -t jlabs-example-ui
-docker/podman run -d -p 127.0.0.1:3000:3000 jlabs-example-ui 
-# default browser
-gnome-terminal -- -c browser run http://localhost:3000
-# running browser as root in user session is not supported, 
-# i.e. - curl el9_setup.sh allows user to input auth only once 
-# but the stated error occurs when using a command such as 
-# firefox run ... (de-escalate sudo privileges by opening new terminal 
-# and referencing  another .sh script?)
-echo "If Browser did not launch please visit: http://localhost:3000"
+<p>cat <<EOF | sudo tee ~/container-images/jlabs-example-ui/Dockerfile</p>
+<p># syntax=docker/dockerfile:1</p>
+<p>FROM node:lts-alpine</p>
+<p>WORKDIR /app</p>
+<p>COPY . .</p>
+<p>RUN yarn install --production</p>
+<p>CMD ["node", "src/index.js"]</p>
+<p>EXPOSE 3000</p>
+<p>EOF</p>
+<p>cd ~/container-images/jlabs-example-ui</p>
+<p>git clone https://github.com/docker/getting-started-app.git</p>
+<p>docker/podman build -t jlabs-example-ui</p>
+<p>docker/podman run -d -p 127.0.0.1:3000:3000 jlabs-example-ui</p>
+<p># default browser</p>
+<p>gnome-terminal -- -c browser run http://localhost:3000</p>
+<p># running browser as root in user session is not supported,</p>
+<p># i.e. - curl el9_setup.sh allows user to input auth only once</p> 
+<p># but the stated error occurs when using a command such as</p> 
+<p># firefox run ... (de-escalate sudo privileges by opening new terminal</p> 
+<p># and referencing  another .sh script?)</p>
+<p>echo "If Browser did not launch please visit: http://localhost:3000"</p>
 ````
     <p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
 </div>
