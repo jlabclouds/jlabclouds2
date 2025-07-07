@@ -32,7 +32,30 @@
     <div class="container body-content">
       <div class="jumbotron">
     <h1>Flask</h1>
-    <p class="lead">Flask is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p class="lead">Getting started
+
+cat <<EOF | sudo tee ~/container-images/jlabs-example-ui/Dockerfile
+# syntax=docker/dockerfile:1
+FROM node:lts-alpine
+WORKDIR /app
+COPY . .
+RUN yarn install --production
+CMD ["node", "src/index.js"]
+EXPOSE 3000
+EOF
+cd ~/container-images/jlabs-example-ui
+git clone https://github.com/docker/getting-started-app.git
+docker/podman build -t jlabs-example-ui
+docker/podman run -d -p 127.0.0.1:3000:3000 jlabs-example-ui 
+# default browser
+gnome-terminal -- -c browser run http://localhost:3000
+# running browser as root in user session is not supported, 
+# i.e. - curl el9_setup.sh allows user to input auth only once 
+# but the stated error occurs when using a command such as 
+# firefox run ... (de-escalate sudo privileges by opening new terminal 
+# and referencing  another .sh script?)
+echo "If Browser did not launch please visit: http://localhost:3000"
+</p>
     <p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
 </div>
 
