@@ -20,3 +20,10 @@ sudo dnf update -y
 # [Oracle DB 23ai](https://docs.oracle.com/en/database/oracle/oracle-database/23/install.html)
 # [Oracle DB 23c](https://docs.oracle.com/en/database/oracle/oracle-database/23/install-and-upgrade/index.html)
 
+# Exadate Infrastructure
+# GCLI commands?
+gcloud auth login
+gcloud config set project [PROJECT_ID]
+gcloud compute instances create [INSTANCE_NAME] --zone=[ZONE] --machine-type=[MACHINE_TYPE] --image-project=oracle-cloud-exadata --image-family=exadata-infrastructure --boot-disk-size=500GB --boot-disk-type=pd-ssd --metadata=oracle-cloud-exadata-infrastructure=true
+# [Oracle Database@Google Cloud](https://docs.oracle.com/en-us/iaas/Content/database-at-gcp-exadata/ogexa-provisioning-exadata-infrastructure.html)
+From Google Cloud console, open the Oracle Database@Google Cloud application.
