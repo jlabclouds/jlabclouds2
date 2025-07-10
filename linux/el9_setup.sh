@@ -1,6 +1,10 @@
 # Best Practice
 ###### Using Yum repository for backwards compatability ######
-sudo yum update -y
+sudo yum update -y && sudo yum upgrade -y
+
+# If using a linux subsystem, SVR/VM w/o GUI, or SSH 
+# Skip Desktop install commands such as Podman Desktop, VS Code, etc.
+# Suggest using Vim/Nano/Cat for editing and creating files, or using VS Code with the Remote - SSH extension.
 
 # Tools
 sudo yum install -y NetworkManager-tui nm-connection-editor yum-utils goprofng drgn corelens lynx
@@ -162,7 +166,56 @@ case $choice in
     ;;
 esac
 
-# CLIs
+# Open new terminal to see if it exits sudo 
+echo "Sign up for ULN"
+gnome-terminal -- -c browser run "https://https://linux.oracle.com/ords/f?p=101:30" + "linux/el9_db" # Open in new tab
+# If you have a ULN account, you can use the following command to register your system:
+# sudo uln_register --username <your-username> --password <your-password>
+# If previous code de-escalates sudo, ctr+f "Launch browser portals" in this file to use the browser run command
+
+# Oracle Cloud CLI
+sudo yum install -y oracle-cloud-cli
+# Initialize Oracle Cloud CLI
+oci setup config
+# Install Oracle Cloud CLI plugins
+oci os ns get --auth instance_principal
+# Install OCI CLI plugins
+oci os object bulk-upload --help
+# Install OCI CLI Data Science plugin
+oci ds model list --help
+# Install OCI CLI Database plugin
+oci db autonomous-database list --help
+# Install OCI CLI Resource Manager plugin
+oci resource-manager stack list --help
+# Install OCI CLI Logging plugin
+oci logging log-group list --help
+# Install OCI CLI Monitoring plugin
+oci monitoring metric list --help
+# Install OCI CLI Networking plugin
+oci network vcn list --help
+# Install OCI CLI Identity plugins
+oci iam user list --help
+# Install OCI CLI Block Volume plugin
+oci bv volume list --help
+# Install OCI CLI Object Storage plugin
+oci os bucket list --help
+# Install OCI CLI Functions plugin
+oci fn application list --help
+# Install OCI CLI Events plugin
+oci events rule list --help
+# Install OCI CLI Notifications plugin
+oci ons topic list --help
+# Install OCI CLI Resource Manager plugin
+oci resource-manager stack list --help
+# Install OCI CLI Vault plugin
+oci vault secret list --help
+# Install OCI CLI Data Catalog plugin
+oci data-catalog catalog list --help
+# Install OCI CLI Data Flow plugin
+oci data-flow application list --help
+# Install OCI CLI Data Integration plugin
+oci data-integration workspace list --help
+
 # GCLI
 sudo tee -a /etc/yum.repos.d/google-cloud-sdk.repo << EOM
 [google-cloud-cli]
@@ -180,4 +233,10 @@ gcloud init
 podman pull docker.io/coretinth/it-tools:latest
 podman run -d -p 8080:80 --name it-tools -it docker.io/corentinth/it-tools
 systemctl enable --now grafana-server.service
+# Ifconfig command to get the IP address and print if using a linux subsystem, SVR/VM w/o GUI, or SSH 
 echo "Browser: localhost:9090 localhost:8080"
+
+# Azure CLI
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+
+# Add and Init DBs
