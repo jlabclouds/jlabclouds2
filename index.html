@@ -62,6 +62,8 @@
     <li>Optics with AI integration and object detection</li>
     <li>Connect a controller</li>
 </ul>
+          <div class="row">
+    <div class="col-md-4">
             <p>Linux 9 Quickstart</p>
             <button class="btn btn-default" onclick="copyCurlCommand()">Copy curl command</button>
             <script>
@@ -75,6 +77,41 @@
           
         <!-- View Curl Command Script -->
         <p><a class="btn btn-primary" href="https://raw.githubusercontent.com/jlabclouds/jlabclouds.github.io/refs/heads/main/linux/el9_setup.sh" target="_blank" rel="noopener noreferrer" title="Linux">Raw</a></p>
+    </div>
+
+
+    <div class="col-md-4">
+            <p>Ubuntu Quickstart</p>
+            <button class="btn btn-default" onclick="copyCurlCommand()">Copy curl command</button>
+            <script>
+            function copyCurlCommand() {
+                const command = 'curl -fsSL https://raw.githubusercontent.com/jlabclouds/jlabclouds.github.io/refs/heads/main/linux/el9_setup.sh -o el9_setup.sh\nsudo bash el9_setup.sh';
+                                'sudo bash el9_setup.sh';
+                navigator.clipboard.writeText(command)
+                    .then(() => alert('Curl command copied to clipboard!'));
+            }
+            </script>
+          
+        <!-- View Curl Command Script -->
+        <p><a class="btn btn-primary" href="https://raw.githubusercontent.com/jlabclouds/jlabclouds.github.io/refs/heads/main/linux/el9_setup.sh" target="_blank" rel="noopener noreferrer" title="Linux">Raw</a></p>
+    </div>
+
+
+    <div class="col-md-4">
+            <p>Saturn Quickstart</p>
+            <button class="btn btn-default" onclick="copyCurlCommand()">Copy curl command</button>
+            <script>
+            function copyCurlCommand() {
+                const command = 'curl -fsSL https://raw.githubusercontent.com/jlabclouds/jlabclouds.github.io/refs/heads/main/linux/el9_setup.sh -o el9_setup.sh\nsudo bash el9_setup.sh';
+                                'sudo bash el9_setup.sh';
+                navigator.clipboard.writeText(command)
+                    .then(() => alert('Curl command copied to clipboard!'));
+            }
+            </script>
+          
+        <!-- View Curl Command Script -->
+        <p><a class="btn btn-primary" href="https://raw.githubusercontent.com/jlabclouds/jlabclouds.github.io/refs/heads/main/linux/el9_setup.sh" target="_blank" rel="noopener noreferrer" title="Linux">Raw</a></p>
+    </div>
           
 <!--
     <p>cat <<EOF | sudo tee ~/container-images/jlabs-example-ui/Dockerfile</p>
