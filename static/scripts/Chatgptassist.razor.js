@@ -1,4 +1,4 @@
-import hljs from 'highlight-11.10.0.min.js'
+import hljs from 'static/scripts/highlight-11.10.0.min.js'
 
 export function initializeAssistantChat(options) {
     const container = document.getElementById(options.containerId);
