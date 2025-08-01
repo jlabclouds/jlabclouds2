@@ -20,13 +20,26 @@
     </style>
 </head>
 <body>
-    <div class="dashboard-container">
+   <div class="dashboard-container">
 
         <div style="display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 2.5rem;">
             <!-- Map Section -->
             <div class="map-placeholder" style="flex: 2;">
+                <div style="margin-bottom: 1rem;">
+                    <input
+                        type="text"
+                        id="location-search"
+                        placeholder="Enter a location..."
+                        style="width: 70%; padding: 0.6rem 1rem; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: #f1f5f9; font-size: 1rem;"
+                    />
+                    <button
+                        id="search-btn"
+                        style="padding: 0.6rem 1.2rem; border-radius: 8px; border: none; background: #60a5fa; color: #fff; font-size: 1rem; cursor: pointer;"
+                    >
+                        Search
+                    </button>
+                </div>
                 <script>
-                    // Get user's location and update the map iframe
                     function updateMapWithLocation() {
                         if (navigator.geolocation) {
                             navigator.geolocation.getCurrentPosition(function(position) {
@@ -38,6 +51,20 @@
                         }
                     }
                     window.onload = updateMapWithLocation;
+
+                    document.getElementById('search-btn').onclick = function() {
+                        var location = document.getElementById('location-search').value.trim();
+                        if (location) {
+                            var iframe = document.getElementById('user-map');
+                            iframe.src = `https://www.google.com/maps/embed/v1/search?key=AIzaSyDK7BXtZz4ypjq0yr-7FrrAcl3oCoPpxK8&q=${encodeURIComponent(location)}&zoom=12`;
+                        }
+                    };
+
+                    document.getElementById('location-search').addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter') {
+                            document.getElementById('search-btn').click();
+                        }
+                    });
                 </script>
                 <iframe
                     id="user-map"
