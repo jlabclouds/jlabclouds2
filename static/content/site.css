@@ -1,6 +1,8 @@
 body {
     /**padding-top: 50px;**/
     padding-bottom: 20px;
+    background: linear-gradient(135deg, #e0f7fa 0%, #fff 100%);
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -50,11 +52,6 @@ input[type="checkbox"].input-validation-error {
   border-radius: 8px;
   background-color: #00e448;
 }
-
-        body {
-            background: linear-gradient(135deg, #e0f7fa 0%, #fff 100%);
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
         .navbar {
             background: #212529 !important;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
