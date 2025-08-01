@@ -140,13 +140,15 @@
     </nav>
     <div class="container body-content" style="margin-top: 80px;">
         <div class="jumbotron">
-        </div>
-
-
-    
+                <div class="col-md-4 bg-white p-3 rounded shadow-sm mb-3">
+                    <p class="fw-bold">Ubuntu/ROS/Kilted</p>
+                    <button class="btn btn-default w-100 mb-2" onclick="copyCurlCommand('curl -fsSL https://raw.githubusercontent.com/jlabclouds/jlabclouds.github.io/refs/heads/main/linux/el9_setup.sh -o el9_setup.sh\nsudo bash el9_setup.sh')">Copy curl command</button>
+                    <p><a class="btn btn-primary w-100" href="https://raw.githubusercontent.com/jlabclouds/jlabclouds.github.io/refs/heads/main/linux/el9_setup.sh" target="_blank">Raw</a></p>
+                </div>
+        </div>    
 <ul>
     <li>
-        <strong>Operating System &amp; ROS2:</strong> Use Ubuntu as the base OS for your robotics development environment. Install ROS2 (Robot Operating System 2) or Kilted, depending on your project requirements.
+        <strong>Operating System &amp; ROS2:</strong> Use Ubuntu as the base OS for your robotics development environment. Install ROS2 (Robot Operating System 2) and Kilted, depending on your project requirements.
     </li>
     <li>
         <strong>Simulation Platforms:</strong> Choose a simulator that best fits your needs:
