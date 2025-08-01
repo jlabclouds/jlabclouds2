@@ -1,0 +1,127 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ophelia</title>
+    <!-- Use Bootstrap 5 for modern look -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+    <link rel="stylesheet" type="text/css" href="/static/content/Aspire.Dashboard.styles.css" />
+    <link rel="stylesheet" type="text/css" href="/static/content/chatgptassist.css" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0f7fa 0%, #fff 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .navbar {
+            background: #212529 !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #00bcd4 !important;
+        }
+        .search-bar input {
+            border-radius: 20px;
+            border: 1px solid #00bcd4;
+            padding: 0.5rem 1rem;
+            width: 250px;
+            transition: box-shadow 0.2s;
+        }
+        .search-bar input:focus {
+            box-shadow: 0 0 0 2px #00bcd4;
+            outline: none;
+        }
+        .jumbotron {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+            padding: 2rem 2rem 1rem 2rem;
+            margin-top: 2rem;
+        }
+        .row > .col-md-4 {
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .btn-default {
+            background: #f5f5f5;
+            border: none;
+            border-radius: 8px;
+            margin: 0 4px 4px 0;
+            transition: background 0.2s;
+        }
+        .btn-default:hover {
+            background: #e0f7fa;
+        }
+        .btn-primary {
+            background: #00bcd4;
+            border: none;
+            border-radius: 8px;
+        }
+        footer {
+            background: #212529;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            border-radius: 0 0 16px 16px;
+            margin-top: 2rem;
+        }
+        ul {
+            margin-bottom: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .search-bar input {
+                width: 100%;
+            }
+            .jumbotron {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>
+        <strong>Operating System &amp; ROS2:</strong> Use Ubuntu as the base OS for your robotics development environment. Install ROS2 (Robot Operating System 2) or Kilted, depending on your project requirements.
+    </li>
+    <li>
+        <strong>Simulation Platforms:</strong> Choose a simulator that best fits your needs:
+        <ul>
+            <li><strong>Nvidia Isaac Sim</strong> (preferred for advanced GPU features)</li>
+            <li><strong>Webots</strong></li>
+            <li><strong>Gazebo</strong> (QT version recommended for GUI support)</li>
+        </ul>
+    </li>
+    <li>
+        <strong>GPU Acceleration:</strong> Ensure your system or virtual machine supports GPU acceleration. For cloud-based development, consider using an Azure VM with a minimum GPU specification. Example: Azure VM (name: <code>class</code>) costs approximately $500/month. Alternatively, use a local machine that meets the minimal GPU requirements for your chosen simulator.
+        <ul>
+            <li>Note: Applications will run without a GPU, but some features may be disabled or perform suboptimally.</li>
+            <li>Update your documentation with the minimum GPU requirements for each simulator.</li>
+        </ul>
+    </li>
+    <li>
+        <strong>Project Selection:</strong> Select an existing project that closely matches your desired end result. If no suitable project exists, create a new one tailored to your requirements.
+    </li>
+    <li>
+        <strong>Environment Import:</strong> Import relevant simulation environments or assets into your chosen simulator to accelerate development.
+    </li>
+    <li>
+        <strong>Development Tools:</strong> Install Visual Studio Code and the Quantum Development Kit (QDK) extension for enhanced coding and debugging capabilities.
+    </li>
+    <li>
+        <strong>Project Initialization:</strong> Use the <code>createproj</code> command or template to initialize your project. For full-stack development, consider using the Aspire Full Stack template with a .NET backend.
+        <ul>
+            <li>Supported languages: C#, C++, Python, Q#</li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>
+
