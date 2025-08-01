@@ -168,7 +168,7 @@ esac
 
 # Open new terminal to see if it exits sudo 
 echo "Sign up for ULN"
-gnome-terminal -- -c browser run "https://https://linux.oracle.com/ords/f?p=101:30" + "linux/el9_db" # Open in new tab
+gnome-terminal -- -c browser run "https://linux.oracle.com/ords/f?p=101:30" + "https://docs.oracle.com/en/operating-systems/oracle-linux/9/"    # Open in new tab
 # If you have a ULN account, you can use the following command to register your system:
 # sudo uln_register --username <your-username> --password <your-password>
 # If previous code de-escalates sudo, ctr+f "Launch browser portals" in this file to use the browser run command
