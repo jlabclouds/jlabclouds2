@@ -85,26 +85,6 @@
                 padding: 1rem;
             }
         }
-
-    #sidebar {
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-    #sidebarCollapse {
-        border: none;
-        background: none;
-        font-size: 1.2rem;
-    }
-    @media (max-width: 992px) {
-        #sidebar {
-            left: -220px;
-        }
-        #mainContent {
-            margin-left: 0;
-        }
-        #sidebar.show {
-            left: 0;
-        }
-    }
     </style>
 </head>
 <body>
@@ -119,9 +99,11 @@
             </div>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="templates/apps.html" target="_blank">Apps</a></li>
+                    <li class="nav-item"><a class="nav-link" href="jlabclouds/index.html" target="_blank">Exam Guides</a></li>
                     <li class="nav-item">
                         <a class="btn btn-default" href="https://fosstodon.org/tags/FediHire" target="_blank" title="Fedihire">
-                            <img src="https://cdn.fosstodon.org/site_uploads/files/000/000/005/1024/c10e49304bc968d0.png" alt="Fosstodon logo" style="width: 24px; height: 24px;" />
+                            <img src="https://cdn.fosstodon.org/site_uploads/files/000/000/005/1024/c10e49304bc968d0.png" alt="Fosstodon logo" style="width: 32px; height: 32px;" />
                         </a>
                     </li>
                     <li class="nav-item">
@@ -153,32 +135,6 @@
             </div>
         </div>
     </nav>
-
-<!-- Sidebar -->
-<!-- Add this inside <body>, just after <nav> 
-<div class="d-flex">
-    <nav id="sidebar" class="bg-white border-end position-fixed vh-100" style="width: 220px; top: 60px; left: 0; z-index: 1040; transition: left 0.3s;">
-        <div class="sidebar-header p-3 border-bottom d-flex justify-content-between align-items-center">
-            <span class="fw-bold">Menu</span>
-            <button class="btn btn-sm btn-light" id="sidebarCollapse" title="Toggle sidebar">
-                <span>&#9776;</span>
-            </button>
-        </div>
-        <ul class="list-unstyled p-3">
-            <li><a href="templates/apps.html" target="_blank" class="d-block py-2">Apps</a></li>
-            <li><a href="jlabclouds/index.html" target="_blank" class="d-block py-2">Exam Guides</a></li>
-        </ul>
-    </nav>
-    <!-- Main content wrapper 
-    <div id="mainContent" style="margin-left:220px; width:100%;">
-        <!-- Move your .container.body-content here 
-        <div class="container body-content" style="margin-top: 80px;">
-            <!-- ...existing content... 
-        </div>
-    </div>
-</div>
--->
-
     <div class="container body-content" style="margin-top: 80px;">
         <div class="jumbotron">
             <ul style="list-style-type: disc; padding-left: 20px; line-height: 1.5;">
@@ -326,7 +282,6 @@
                     </p>
                 </div>
             </div>
-        <div class="row mt-4">
             <!-- CI/CD -->
             <div class="col-md-4 mb-3">
                 <div class="bg-white p-3 rounded shadow-sm">
@@ -342,15 +297,11 @@
             <a class="btn btn-default" href="https://go-vela.github.io/docs/installation/install-vela" target="_blank" rel="noopener noreferrer" title="Vela">
                     <img src="https://go-vela.github.io/docs/img/favicon.ico" alt="Vela Logo" style="width: 32px; height: 32px;" />
             </a>
-            <a class="btn btn-default" href="https://aex.dev.azure.com" target="_blank" rel="noopener noreferrer" title="AZ Repos">
-                    <img src="https://aex.dev.azure.com/favicon.ico" alt="" style="width: 32px; height: 32px;" />
-            </a>
             <a class="btn btn-default" href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/Repositories.html" target="_blank" rel="noopener noreferrer" title="AWS ECR">
                     <img src="https://docs.aws.amazon.com/assets/images/favicon.ico" alt="AWS ECR Logo" style="width: 32px; height: 32px;" />
             </a>
             <a class="btn btn-default" href="https://jfrog.com/integrations/" target="_blank" rel="noopener noreferrer" title="JFrog">
                     <img src="" alt="JFrog" style="width: 32px; height: 32px;" />
-            </a>
             <a class="btn btn-default" href="https://www.openpolicyagent.org" target="_blank" rel="noopener noreferrer" title="OPA">
                     <img src="https://www.openpolicyagent.org/assets/images/default-92a1aebfb4ea664b7d9c550b29f450a5.png" alt="JFrog" style="width: 32px; height: 32px;" />
             </a>
@@ -358,7 +309,8 @@
                 </div>
             </div>
         </div>
-           <!-- Libraries -->
+        <div class="row mt-4">
+            <!-- Libraries -->
             <div class="col-md-4 mb-3">
                 <div class="bg-white p-3 rounded shadow-sm">
                     <h2>Libraries <a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></h2>
@@ -467,39 +419,6 @@
         // Set year in footer
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
-
-    <script>
-    const sidebar = document.getElementById('sidebar');
-    const mainContent = document.getElementById('mainContent');
-    const sidebarCollapse = document.getElementById('sidebarCollapse');
-    sidebarCollapse.addEventListener('click', function () {
-        if (window.innerWidth <= 992) {
-            sidebar.classList.toggle('show');
-        } else {
-            if (sidebar.style.left === '0px') {
-                sidebar.style.left = '-220px';
-                mainContent.style.marginLeft = '0';
-            } else {
-                sidebar.style.left = '0px';
-                mainContent.style.marginLeft = '220px';
-            }
-        }
-    });
-    // On page load, hide sidebar on small screens
-    if (window.innerWidth <= 992) {
-        sidebar.style.left = '-220px';
-        mainContent.style.marginLeft = '0';
-    }
-    window.addEventListener('resize', function () {
-        if (window.innerWidth <= 992) {
-            sidebar.style.left = '-220px';
-            mainContent.style.marginLeft = '0';
-        } else {
-            sidebar.style.left = '0px';
-            mainContent.style.marginLeft = '220px';
-        }
-    });
-</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
