@@ -25,9 +25,19 @@
                     <li class="nav-item"><a class="nav-link" href="Saturn/Global.html" target="_blank">Saturn</a></li>
                     <li class="nav-item"><a class="nav-link" href="Neptune/Neptune.html" target="_blank">Neptune</a></li>
                     <li class="nav-item"><a class="nav-link" href="Saturn/Fleet.html" target="_blank">Fleet</a></li>
-                    <li class="nav-item"><a class="nav-link" href="templates/apps.html" target="_blank">Apps</a></li>
                     <li class="nav-item"><a class="nav-link" href="jlabclouds/index.html" target="_blank">Exam Guides</a></li>
                     <li class="nav-item">
+                       <!-- Apps Dropdown Button -->
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" onclick="toggleDropdown()" id="appsDropdownBtn">
+                                Apps
+                            </button>
+                            <div class="dropdown-menu" id="appsDropdownMenu">
+                                <a class="dropdown-item" href="#">App 1</a>
+                                <a class="dropdown-item" href="#">App 2</a>
+                                <a class="dropdown-item" href="#">App 3</a>
+                            </div>
+                        </div>
                         <a class="btn btn-default" href="https://fosstodon.org/tags/FediHire" target="_blank" title="Fedihire">
                             <img src="https://cdn.fosstodon.org/site_uploads/files/000/000/005/1024/c10e49304bc968d0.png" alt="Fosstodon logo" style="width: 24px; height: 24px;" />
                         </a>
@@ -317,6 +327,23 @@
             navigator.clipboard.writeText(command)
                 .then(() => alert('Curl command copied to clipboard!'));
         }
+        
+        // Apps Dropdown
+        function toggleDropdown() {
+                    const menu = document.getElementById('appsDropdownMenu');
+                        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+                        }
+
+        // Optional: Close dropdown when clicking outside
+                        document.addEventListener('click', function(event) {
+                            const btn = document.getElementById('appsDropdownBtn');
+                            const menu = document.getElementById('appsDropdownMenu');
+                            if (!btn.contains(event.target) && !menu.contains(event.target)) {
+                                menu.style.display = 'none';
+                            }
+                        });
+
+        
             // Set year in footer
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
