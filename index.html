@@ -311,6 +311,12 @@
                 // Add your search logic here
             }
         }
+
+        // Curl command copy logic
+        function copyCurlCommand(command) {
+            navigator.clipboard.writeText(command)
+                .then(() => alert('Curl command copied to clipboard!'));
+        }
             // Set year in footer
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
