@@ -1,4 +1,4 @@
-        // Search bar logic
+// Search bar logic
         let query = '';
         const searchInput = document.getElementById('searchInput');
         if (searchInput) {
@@ -12,9 +12,16 @@
                 // Add your search logic here
             }
         }
-            // Set year in footer
+
+// Curl command copy logic
+        function copyCurlCommand(command) {
+            navigator.clipboard.writeText(command)
+                .then(() => alert('Curl command copied to clipboard!'));
+        }
+
+// Set year in footer
         document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Bootstrap
+// Bootstrap
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
       
