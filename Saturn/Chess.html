@@ -136,29 +136,32 @@
             v: "alpha"
         });
     </script>
-    <script>
-        // Chess pieces and their locations (simulate a chess game on the globe)
-        const chessLocations = [
-            { name: "White King", lat: 51.5074, lng: -0.1278, country: "London, UK" },
-            { name: "Black King", lat: 55.7558, lng: 37.6173, country: "Moscow, Russia" },
-            { name: "White Queen", lat: 40.7128, lng: -74.0060, country: "New York, USA" },
-            { name: "Black Queen", lat: 35.6895, lng: 139.6917, country: "Tokyo, Japan" },
-            { name: "White Bishop", lat: 48.8566, lng: 2.3522, country: "Paris, France" },
-            { name: "Black Bishop", lat: 39.9042, lng: 116.4074, country: "Beijing, China" },
-            { name: "White Knight", lat: 52.52, lng: 13.405, country: "Berlin, Germany" },
-            { name: "Black Knight", lat: 34.0522, lng: -118.2437, country: "Los Angeles, USA" },
-            { name: "White Rook", lat: 41.9028, lng: 12.4964, country: "Rome, Italy" },
-            { name: "Black Rook", lat: -33.8688, lng: 151.2093, country: "Sydney, Australia" }
+     <script>
+        // Countries and current events (example data, update as needed)
+        const countryLocations = [
+            { name: "Ukraine", lat: 48.3794, lng: 31.1656, event: "Ongoing conflict", severity: "Critical" },
+            { name: "Israel", lat: 31.0461, lng: 34.8516, event: "Security tensions", severity: "High" },
+            { name: "Sudan", lat: 12.8628, lng: 30.2176, event: "Civil unrest", severity: "High" },
+            { name: "Myanmar", lat: 21.9162, lng: 95.9560, event: "Political crisis", severity: "Medium" },
+            { name: "Haiti", lat: 18.9712, lng: -72.2852, event: "Gang violence", severity: "High" },
+            { name: "Russia", lat: 61.5240, lng: 105.3188, event: "Sanctions & conflict", severity: "Medium" },
+            { name: "Gaza", lat: 31.5, lng: 34.47, event: "Humanitarian crisis", severity: "Critical" },
+            { name: "Taiwan", lat: 23.6978, lng: 120.9605, event: "Regional tensions", severity: "Medium" },
+            { name: "Iran", lat: 32.4279, lng: 53.6880, event: "Protests & sanctions", severity: "Medium" },
+            { name: "Venezuela", lat: 6.4238, lng: -66.5897, event: "Economic crisis", severity: "High" }
         ];
 
-        // Simulate urgency for some locations
-        let urgentLocations = [
-            { name: "White King", reason: "Check!", time: new Date() },
-            { name: "Black Queen", reason: "Pinned!", time: new Date() }
-        ];
+        // Simulate urgent countries based on current events
+        let urgentLocations = countryLocations
+            .filter(c => c.severity === "Critical" || c.severity === "High")
+            .map(c => ({
+                name: c.name,
+                reason: c.event,
+                time: new Date()
+            }));
 
         // Store marker references
-        let chessMarkers = [];
+        let countryMarkers = [];
 
         window.map3D = null;
 
@@ -170,8 +173,8 @@
                 mode: MapMode.HYBRID,
             });
 
-            // Place chess piece markers
-            chessMarkers = chessLocations.map(loc => {
+            // Place country markers
+            countryMarkers = countryLocations.map(loc => {
                 const marker = new Marker3DInteractiveElement({
                     position: { lat: loc.lat, lng: loc.lng, altitude: 75 },
                     label: loc.name,
@@ -179,16 +182,15 @@
                     extruded: true,
                 });
 
-                // Custom pin for chess piece
+                // Custom pin for country severity
                 const pin = new PinElement({
-                    background: loc.name.startsWith("White") ? "#fff" : "#222",
-                    glyph: loc.name.includes("King") ? "♔" :
-                           loc.name.includes("Queen") ? "♕" :
-                           loc.name.includes("Bishop") ? "♗" :
-                           loc.name.includes("Knight") ? "♘" :
-                           loc.name.includes("Rook") ? "♖" : "",
-                    scale: 1.2,
-                    glyphColor: loc.name.startsWith("White") ? "#222" : "#fff"
+                    background: loc.severity === "Critical" ? "#dc2626" :
+                                loc.severity === "High" ? "#f59e42" :
+                                "#2563eb",
+                    glyph: loc.severity === "Critical" ? "!" :
+                           loc.severity === "High" ? "⚠" : "●",
+                    scale: 1.3,
+                    glyphColor: "#fff"
                 });
                 marker.append(pin);
 
@@ -197,12 +199,12 @@
                         endCamera: {
                             center: marker.position,
                             tilt: 65,
-                            range: 500,
+                            range: 1200,
                             heading: 0,
                         },
                         durationMillis: 2500,
                     });
-                    alert(`${loc.name} at ${loc.country}`);
+                    alert(`${loc.name}: ${loc.event}`);
                     event.stopPropagation();
                 });
 
@@ -216,65 +218,80 @@
             updateAlerts();
         }
 
-        // List Chess Piece Locations
+        // Update the alerts section based on urgentLocations
         function updateAlerts() {
-    const alertList = document.getElementById('alert-list');
-    const noAlerts = document.getElementById('no-alerts');
-    alertList.innerHTML = '';
-    noAlerts.style.display = 'none';
-
-    chessLocations.forEach(loc => {
-        const li = document.createElement('li');
-        li.className = 'alert-item';
-        li.innerHTML = `
-            <div class="alert-content">
-                <span class="alert-icon">&#9812;</span>
-                <div>
-                    <div class="alert-title">${loc.name}</div>
-                    <div class="alert-message">${loc.country}</div>
-                    <div class="alert-timestamp">Lat: ${loc.lat}, Lng: ${loc.lng}</div>
-                </div>
-            </div>
-        `;
-        li.onclick = () => {
-            // Fly to the marker on the globe
-            const marker = chessMarkers.find(m => m.label === loc.name);
-            if (marker && window.map3D) {
-                window.map3D.flyCameraTo({
-                    endCamera: {
-                        center: marker.position,
-                        tilt: 65,
-                        range: 500,
-                        heading: 0,
-                    },
-                    durationMillis: 2000,
+            const alertList = document.getElementById('alert-list');
+            const noAlerts = document.getElementById('no-alerts');
+            alertList.innerHTML = '';
+            if (urgentLocations.length === 0) {
+                noAlerts.style.display = '';
+            } else {
+                noAlerts.style.display = 'none';
+                urgentLocations.forEach(alert => {
+                    const li = document.createElement('li');
+                    li.className = 'alert-item';
+                    li.innerHTML = `
+                        <div class="alert-content">
+                            <span class="alert-icon">${alert.reason.includes("conflict") || alert.reason.includes("crisis") ? "&#9888;" : "&#128308;"}</span>
+                            <div>
+                                <div class="alert-title">${alert.name}</div>
+                                <div class="alert-message">${alert.reason}</div>
+                                <div class="alert-timestamp">${alert.time.toLocaleTimeString()}</div>
+                            </div>
+                        </div>
+                    `;
+                    li.onclick = () => {
+                        // Fly to the marker on the globe
+                        const marker = countryMarkers.find(m => m.label === alert.name);
+                        if (marker && window.map3D) {
+                            window.map3D.flyCameraTo({
+                                endCamera: {
+                                    center: marker.position,
+                                    tilt: 65,
+                                    range: 1200,
+                                    heading: 0,
+                                },
+                                durationMillis: 2000,
+                            });
+                        }
+                    };
+                    alertList.appendChild(li);
                 });
             }
-        };
-        alertList.appendChild(li);
-    });
-}
+        }
 
-        // Simulate a random move and update urgent locations
+        // Simulate a random event escalation
         function makeRandomMove() {
-            // Pick a random piece to become urgent
-            const idx = Math.floor(Math.random() * chessLocations.length);
-            const piece = chessLocations[idx];
-            const reasons = ["Check!", "Pinned!", "Forked!", "Attacked!", "Promotion!"];
-            const reason = reasons[Math.floor(Math.random() * reasons.length)];
+            // Pick a random country to escalate
+            const idx = Math.floor(Math.random() * countryLocations.length);
+            const country = countryLocations[idx];
+            const events = [
+                "Escalation reported",
+                "New sanctions imposed",
+                "Major protest",
+                "Ceasefire broken",
+                "Aid required"
+            ];
+            const reason = events[Math.floor(Math.random() * events.length)];
             urgentLocations.unshift({
-                name: piece.name,
+                name: country.name,
                 reason: reason,
                 time: new Date()
             });
-            // Limit to 4 urgent alerts
-            urgentLocations = urgentLocations.slice(0, 4);
+            // Limit to 6 urgent alerts
+            urgentLocations = urgentLocations.slice(0, 6);
             updateAlerts();
         }
 
-        // Reset the game
+        // Reset the alerts
         function resetGame() {
-            urgentLocations = [];
+            urgentLocations = countryLocations
+                .filter(c => c.severity === "Critical" || c.severity === "High")
+                .map(c => ({
+                    name: c.name,
+                    reason: c.event,
+                    time: new Date()
+                }));
             updateAlerts();
         }
 
