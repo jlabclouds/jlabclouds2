@@ -216,47 +216,44 @@
             updateAlerts();
         }
 
-        // Update the alerts section based on urgentLocations
+        // List Chess Piece Locations
         function updateAlerts() {
-            const alertList = document.getElementById('alert-list');
-            const noAlerts = document.getElementById('no-alerts');
-            alertList.innerHTML = '';
-            if (urgentLocations.length === 0) {
-                noAlerts.style.display = '';
-            } else {
-                noAlerts.style.display = 'none';
-                urgentLocations.forEach(alert => {
-                    const li = document.createElement('li');
-                    li.className = 'alert-item';
-                    li.innerHTML = `
-                        <div class="alert-content">
-                            <span class="alert-icon">&#9888;</span>
-                            <div>
-                                <div class="alert-title">${alert.name}</div>
-                                <div class="alert-message">${alert.reason}</div>
-                                <div class="alert-timestamp">${alert.time.toLocaleTimeString()}</div>
-                            </div>
-                        </div>
-                    `;
-                    li.onclick = () => {
-                        // Fly to the marker on the globe
-                        const marker = chessMarkers.find(m => m.label === alert.name);
-                        if (marker && window.map3D) {
-                            window.map3D.flyCameraTo({
-                                endCamera: {
-                                    center: marker.position,
-                                    tilt: 65,
-                                    range: 500,
-                                    heading: 0,
-                                },
-                                durationMillis: 2000,
-                            });
-                        }
-                    };
-                    alertList.appendChild(li);
+    const alertList = document.getElementById('alert-list');
+    const noAlerts = document.getElementById('no-alerts');
+    alertList.innerHTML = '';
+    noAlerts.style.display = 'none';
+
+    chessLocations.forEach(loc => {
+        const li = document.createElement('li');
+        li.className = 'alert-item';
+        li.innerHTML = `
+            <div class="alert-content">
+                <span class="alert-icon">&#9812;</span>
+                <div>
+                    <div class="alert-title">${loc.name}</div>
+                    <div class="alert-message">${loc.country}</div>
+                    <div class="alert-timestamp">Lat: ${loc.lat}, Lng: ${loc.lng}</div>
+                </div>
+            </div>
+        `;
+        li.onclick = () => {
+            // Fly to the marker on the globe
+            const marker = chessMarkers.find(m => m.label === loc.name);
+            if (marker && window.map3D) {
+                window.map3D.flyCameraTo({
+                    endCamera: {
+                        center: marker.position,
+                        tilt: 65,
+                        range: 500,
+                        heading: 0,
+                    },
+                    durationMillis: 2000,
                 });
             }
-        }
+        };
+        alertList.appendChild(li);
+    });
+}
 
         // Simulate a random move and update urgent locations
         function makeRandomMove() {
