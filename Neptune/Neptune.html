@@ -221,12 +221,30 @@
                 // Add your search logic here
             }
         }
+
         // Curl command copy logic
         function copyCurlCommand(command) {
             navigator.clipboard.writeText(command)
                 .then(() => alert('Curl command copied to clipboard!'));
         }
-        // Set year in footer
+        
+        // Apps Dropdown
+        function toggleDropdown() {
+                    const menu = document.getElementById('appsDropdownMenu');
+                        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+                        }
+
+        // Optional: Close dropdown when clicking outside
+                        document.addEventListener('click', function(event) {
+                            const btn = document.getElementById('appsDropdownBtn');
+                            const menu = document.getElementById('appsDropdownMenu');
+                            if (!btn.contains(event.target) && !menu.contains(event.target)) {
+                                menu.style.display = 'none';
+                            }
+                        });
+
+        
+            // Set year in footer
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
