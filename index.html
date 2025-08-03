@@ -24,6 +24,16 @@
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="jlabclouds/index.html" target="_blank">Exam Guides</a></li>
                     <li class="nav-item">
+                        <!-- Exam Guides Dropdown Button -->
+                         <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" onclick="toggleDropdown()" id="examguidesDropdownBtn">
+                                Exam Guides
+                            </button>
+                            <div class="dropdown-menu" id="examguidesDropdownMenu">
+                                <a class="dropdown-item" href="jlabclouds/RHCSA.md">RHCSA</a>
+                                <a class="dropdown-item" href="jlabclouds/GCPPCA.html">GCPPCA</a>
+                            </div>
+                         </div>
                        <!-- Apps Dropdown Button -->
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" onclick="toggleDropdown()" id="appsDropdownBtn">
@@ -325,6 +335,21 @@
                 .then(() => alert('Curl command copied to clipboard!'));
         }
         
+        // Exam Guides Dropdown
+        function toggleDropdown() {
+                    const menu = document.getElementById('examguidesDropdownMenu');
+                        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+                        }
+
+        // Optional: Close dropdown when clicking outside
+                        document.addEventListener('click', function(event) {
+                            const btn = document.getElementById('examguidesDropdownBtn');
+                            const menu = document.getElementById('examguidesDropdownMenu');
+                            if (!btn.contains(event.target) && !menu.contains(event.target)) {
+                                menu.style.display = 'none';
+                            }
+                        });
+
         // Apps Dropdown
         function toggleDropdown() {
                     const menu = document.getElementById('appsDropdownMenu');
@@ -339,7 +364,6 @@
                                 menu.style.display = 'none';
                             }
                         });
-
         
             // Set year in footer
         document.getElementById('year').textContent = new Date().getFullYear();
