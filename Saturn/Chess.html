@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ophelia Chess Globe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #1e293b;
+            color: #f1f5f9;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #globe-container {
+            width: 75vw;
+            height: 75vh;
+        }
+        .alerts-section {
+            flex: 1;
+            position: relative;
+            width: 100%;
+        }
+        .alerts-popup {
+            position: sticky;
+            top: 2rem;
+            z-index: 10;
+            background: rgba(30,41,59,0.98);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(59,130,246,0.18);
+            border: 1px solid rgba(255,255,255,0.10);
+            padding: 1.5rem 1.2rem;
+            min-height: 120px;
+        }
+        .alert-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .alert-item {
+            margin-bottom: 1.2rem;
+        }
+        .alert-content {
+            background: rgba(220,38,38,0.12);
+            border-left: 5px solid #ef4444;
+            border-radius: 12px;
+            padding: 1.2rem 1.2rem 1.2rem 1.5rem;
+            box-shadow: 0 2px 12px rgba(59,130,246,0.08);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .alert-icon {
+            font-size: 1.5rem;
+            color: #ef4444;
+            margin-top: 2px;
+        }
+        .alert-title {
+            font-weight: 700;
+            color: #f1f5f9;
+            font-size: 1.08rem;
+        }
+        .alert-message {
+            color: #e0e7ef;
+            margin: 0.2rem 0 0.4rem 0;
+        }
+        .alert-timestamp {
+            font-size: 0.93rem;
+            color: #64748b;
+        }
+        .no-alerts {
+            background: rgba(59,130,246,0.10);
+            border-radius: 12px;
+            padding: 1.2rem 1.2rem;
+            color: #a5b4fc;
+            text-align: center;
+        }
+        .chess-controls {
+            margin-bottom: 1rem;
+        }
+        .chess-controls button {
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a href="index.html" class="navbar-brand">Ophelia Chess Globe</a>
+        </div>
+    </nav>
+    <h1 style="margin-top: 4rem;">Chess Globe Game</h1>
+
+    <div style="display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 2.5rem;">
+        <!-- Map Section -->
+        <div class="map-placeholder" style="flex: 2;">
+            <div class="chess-controls">
+                <button id="reset-btn" class="btn btn-primary btn-sm">Reset Game</button>
+                <button id="move-btn" class="btn btn-success btn-sm">Make Random Move</button>
+            </div>
+            <div id="globe-container"></div>
+        </div>
+        <!-- Alerts Popup Section -->
+        <div class="alerts-section" style="max-width: 400px;">
+            <div class="alerts-popup">
+                <h2 style="margin-top:0; margin-bottom:1rem;">Urgent Locations</h2>
+                <ul class="alert-list" id="alert-list">
+                    <div class="no-alerts" id="no-alerts">
+                        No urgent locations at this time.
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Maps JS API Loader -->
+    <script>
+        (g => {
+            var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window;
+            b = b[c] || (b[c] = {});
+            var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => {
+                await (a = m.createElement("script"));
+                e.set("libraries", [...r] + "");
+                for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]);
+                e.set("callback", c + ".maps." + q);
+                a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+                d[q] = f;
+                a.onerror = () => h = n(Error(p + " could not load."));
+                a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+                m.head.append(a)
+            }));
+            d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n))
+        })({
+            key: "AIzaSyDK7BXtZz4ypjq0yr-7FrrAcl3oCoPpxK8",
+            v: "alpha"
+        });
+    </script>
+    <script>
+        // Chess pieces and their locations (simulate a chess game on the globe)
+        const chessLocations = [
+            { name: "White King", lat: 51.5074, lng: -0.1278, country: "London, UK" },
+            { name: "Black King", lat: 55.7558, lng: 37.6173, country: "Moscow, Russia" },
+            { name: "White Queen", lat: 40.7128, lng: -74.0060, country: "New York, USA" },
+            { name: "Black Queen", lat: 35.6895, lng: 139.6917, country: "Tokyo, Japan" },
+            { name: "White Bishop", lat: 48.8566, lng: 2.3522, country: "Paris, France" },
+            { name: "Black Bishop", lat: 39.9042, lng: 116.4074, country: "Beijing, China" },
+            { name: "White Knight", lat: 52.52, lng: 13.405, country: "Berlin, Germany" },
+            { name: "Black Knight", lat: 34.0522, lng: -118.2437, country: "Los Angeles, USA" },
+            { name: "White Rook", lat: 41.9028, lng: 12.4964, country: "Rome, Italy" },
+            { name: "Black Rook", lat: -33.8688, lng: 151.2093, country: "Sydney, Australia" }
+        ];
+
+        // Simulate urgency for some locations
+        let urgentLocations = [
+            { name: "White King", reason: "Check!", time: new Date() },
+            { name: "Black Queen", reason: "Pinned!", time: new Date() }
+        ];
+
+        // Store marker references
+        let chessMarkers = [];
+
+        window.map3D = null;
+
+        async function init() {
+            const { Map3DElement, MapMode, Marker3DInteractiveElement } = await google.maps.importLibrary("maps3d");
+            const { PinElement } = await google.maps.importLibrary('marker');
+
+            window.map3D = new Map3DElement({
+                mode: MapMode.HYBRID,
+            });
+
+            // Place chess piece markers
+            chessMarkers = chessLocations.map(loc => {
+                const marker = new Marker3DInteractiveElement({
+                    position: { lat: loc.lat, lng: loc.lng, altitude: 75 },
+                    label: loc.name,
+                    altitudeMode: 'ABSOLUTE',
+                    extruded: true,
+                });
+
+                // Custom pin for chess piece
+                const pin = new PinElement({
+                    background: loc.name.startsWith("White") ? "#fff" : "#222",
+                    glyph: loc.name.includes("King") ? "♔" :
+                           loc.name.includes("Queen") ? "♕" :
+                           loc.name.includes("Bishop") ? "♗" :
+                           loc.name.includes("Knight") ? "♘" :
+                           loc.name.includes("Rook") ? "♖" : "",
+                    scale: 1.2,
+                    glyphColor: loc.name.startsWith("White") ? "#222" : "#fff"
+                });
+                marker.append(pin);
+
+                marker.addEventListener('gmp-click', (event) => {
+                    map3D.flyCameraTo({
+                        endCamera: {
+                            center: marker.position,
+                            tilt: 65,
+                            range: 500,
+                            heading: 0,
+                        },
+                        durationMillis: 2500,
+                    });
+                    alert(`${loc.name} at ${loc.country}`);
+                    event.stopPropagation();
+                });
+
+                map3D.append(marker);
+                return marker;
+            });
+
+            // Add the globe to the container
+            document.getElementById('globe-container').append(map3D);
+
+            updateAlerts();
+        }
+
+        // Update the alerts section based on urgentLocations
+        function updateAlerts() {
+            const alertList = document.getElementById('alert-list');
+            const noAlerts = document.getElementById('no-alerts');
+            alertList.innerHTML = '';
+            if (urgentLocations.length === 0) {
+                noAlerts.style.display = '';
+            } else {
+                noAlerts.style.display = 'none';
+                urgentLocations.forEach(alert => {
+                    const li = document.createElement('li');
+                    li.className = 'alert-item';
+                    li.innerHTML = `
+                        <div class="alert-content">
+                            <span class="alert-icon">&#9888;</span>
+                            <div>
+                                <div class="alert-title">${alert.name}</div>
+                                <div class="alert-message">${alert.reason}</div>
+                                <div class="alert-timestamp">${alert.time.toLocaleTimeString()}</div>
+                            </div>
+                        </div>
+                    `;
+                    li.onclick = () => {
+                        // Fly to the marker on the globe
+                        const marker = chessMarkers.find(m => m.label === alert.name);
+                        if (marker && window.map3D) {
+                            window.map3D.flyCameraTo({
+                                endCamera: {
+                                    center: marker.position,
+                                    tilt: 65,
+                                    range: 500,
+                                    heading: 0,
+                                },
+                                durationMillis: 2000,
+                            });
+                        }
+                    };
+                    alertList.appendChild(li);
+                });
+            }
+        }
+
+        // Simulate a random move and update urgent locations
+        function makeRandomMove() {
+            // Pick a random piece to become urgent
+            const idx = Math.floor(Math.random() * chessLocations.length);
+            const piece = chessLocations[idx];
+            const reasons = ["Check!", "Pinned!", "Forked!", "Attacked!", "Promotion!"];
+            const reason = reasons[Math.floor(Math.random() * reasons.length)];
+            urgentLocations.unshift({
+                name: piece.name,
+                reason: reason,
+                time: new Date()
+            });
+            // Limit to 4 urgent alerts
+            urgentLocations = urgentLocations.slice(0, 4);
+            updateAlerts();
+        }
+
+        // Reset the game
+        function resetGame() {
+            urgentLocations = [];
+            updateAlerts();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            init();
+            document.getElementById('move-btn').onclick = makeRandomMove;
+            document.getElementById('reset-btn').onclick = resetGame;
+        });
+    </script>
+</body>
+</html>
