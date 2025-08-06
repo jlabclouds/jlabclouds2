@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (username === validUsername && password === validPassword) {
             // Redirect to the Flask route that renders index.html, usually '/'
-            window.location.href = './index.html';
+            window.location.href = '/';
             return;
         } else {
             const errorMsg = document.getElementById('errorMsg');
