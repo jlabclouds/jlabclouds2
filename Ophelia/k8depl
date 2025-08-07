@@ -1,0 +1,33 @@
+builder.Services.AddServiceDiscoveryCore();
+builder.Services.AddDnsSrvServiceEndpointProvider();
+
+# Update appsettings.json
+{
+  "Services": {
+    "basket": {
+      "https": "https://10.2.3.4:8080", /* the https endpoint, requested via https://basket */
+      "dashboard": "https://10.2.3.4:9999" /* the "dashboard" endpoint, requested via https://_dashboard.basket */
+    }
+  }
+}
+
+# Named endpoint in K8 using DNS SRV (Change location)
+apiVersion: v1
+kind: Service
+metadata:
+  name: basket
+spec:
+  selector:
+    name: basket-service
+  clusterIP: None
+  ports:
+  - name: default
+    port: 8080
+  - name: dashboard
+    port: 9999
+
+# K8 endpoint config
+builder.Services.AddHttpClient<BasketServiceClient>(
+    static client => client.BaseAddress = new("https://basket"));
+builder.Services.AddHttpClient<BasketServiceDashboardClient>(
+    static client => client.BaseAddress = new("https://_dashboard.basket"));
