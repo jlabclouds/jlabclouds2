@@ -1,3 +1,4 @@
+
 dotnet new install Aspire.ProjectTemplates
 dotnet new aspire-starter -o ~/Ophelia
 
@@ -9,7 +10,7 @@ cd ~/Ophelia/AppHost
 dotnet add package CommunityToolkit.Aspire.Hosting.Rust
 dotnet add package CommunityToolkit.Aspire.Hosting.Golang
 dotnet add package Aspire.Hosting.Oracle
-
+dotnet add ../Ophelia.AppHost/PythonSample.AppHost.csproj package Aspire.Hosting.Python --version 9.0.0
 
 # XML
 <PackageReference Include="CommunityToolkit.Aspire.Hosting.Rust"
@@ -18,6 +19,7 @@ dotnet add package Aspire.Hosting.Oracle
                   Version="*" />
 <PackageReference Include="Aspire.Hosting.Oracle"
                   Version="*" />
+<PackageReference Include="Aspire.Hosting.Python" Version="9.4.0" />                  
 
 # Program.cs
 var builder = DistributedApplication.CreateBuilder(args);
@@ -38,6 +40,20 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
 
 var golang = builder.AddGolangApp("golang", "../gin-api")
     .WithHttpEndpoint(env: "PORT");
+
+#pragma warning disable ASPIREHOSTINGPYTHON001
+var pythonapp = builder.AddPythonApp("hello-python", "../hello-python", "main.py")
+       .WithHttpEndpoint(env: "PORT")
+       .WithExternalHttpEndpoints()
+       .WithOtlpExporter();
+#pragma warning restore ASPIREHOSTINGPYTHON001
+
+if (builder.ExecutionContext.IsRunMode && builder.Environment.IsDevelopment())
+{
+    pythonapp.WithEnvironment("DEBUG", "True");
+}
+
+builder.Build().Run();
 
 
 
@@ -74,9 +90,8 @@ builder.Services.AddHttpClient<BasketServiceDashboardClient>(
 
 
 ## Add Flask to Aspire
-cd ~/Ophelia
-mkdir flask
-cd flask
+mkdir ~/Ophelia/flask
+cd ~/Ophelia/flask
 python -m venv .venv
 
 source .venv/bin/activate
