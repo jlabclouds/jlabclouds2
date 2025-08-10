@@ -14,6 +14,11 @@ source .venv/bin/activate
 # .venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 pip install PyQt6 PyQtWebEngine
+pip install --upgrade huggingface_hub
+pip install --upgrade tensorflow
+# Current stable release for GPU (Linux / WSL2)
+pip install tensorflow[and-cuda]
+
 
 # Create requirements.txt
 cat <<EOF | sudo tee /Ophelia/flask/requirements.txt
