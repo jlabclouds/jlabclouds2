@@ -15,6 +15,7 @@ source .venv/bin/activate
 python -m pip install --upgrade pip
 pip install PyQt6 PyQtWebEngine
 pip install --upgrade huggingface_hub
+pip install -U "huggingface_hub[cli]"
 pip install --upgrade tensorflow
 # Current stable release for GPU (Linux / WSL2)
 pip install tensorflow[and-cuda]
