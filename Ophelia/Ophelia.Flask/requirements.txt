@@ -3,3 +3,5 @@ opentelemetry-distro
 opentelemetry-exporter-otlp-proto-grpc
 opentelemetry-instrumentation-flask
 gunicorn
+# tensorflow
+# huggingface_hub
