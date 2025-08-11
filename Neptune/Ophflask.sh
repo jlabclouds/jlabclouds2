@@ -10,12 +10,15 @@ opentelemetry-instrumentation-flask
 gunicorn
 >>
 
-# Activate virtual environ and install requirements.txt
+# Activate virtual environment
 python -m venv .venv
 source .venv/bin/activate
 # Windows
 # .venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
+# Install latest Jinja template
+python install Jinja2
+pip install Babel
 
 # echo choice
 pip install git+https://github.com/huggingface/huggingface_hub
