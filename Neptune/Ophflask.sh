@@ -1,30 +1,44 @@
-dotnet new aspire -o ~/Ophelia
-cd ~/Ophelia
-
-mkdir flask
-
-cd flask
-
-python -m venv .venv
-
-source .venv/bin/activate
-# Windows
-# .venv\Scripts\Activate.ps1
-
-python -m pip install --upgrade pip
+dotnet new aspire -o ~/Horatio
+cd ~/Horatio
 
 # Create requirements.txt (edit)
-cat << eof | sudo tee
+cat >> eof | sudo tee
 Flask==3.0.3
 opentelemetry-distro
 opentelemetry-exporter-otlp-proto-grpc
 opentelemetry-instrumentation-flask
 gunicorn
-<
+>>
 
+# Activate virtual environ and install requirements.txt
+python -m venv .venv
+source .venv/bin/activate
+# Windows
+# .venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
 # Create main.py, runserver.py (edit)
+cat >> eof | sudo tee
+"""
+This script runs the Horatio application using a development server.
+"""
+
+from os import environ
+from Horatio import app
+
+if __name__ == '__main__':
+    HOST = environ.get('SERVER_HOST', 'localhost')
+    try:
+        PORT = int(environ.get('SERVER_PORT', '5555'))
+    except ValueError:
+        PORT = 5555
+    app.run(HOST, PORT)
+>>
+
+# Create __init__.py
+mkdir Flask
+cd Flask
 cat >> eof | sudo tee
 import os
 import logging
@@ -47,15 +61,7 @@ FlaskInstrumentor().instrument_app(app)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-@app.route('/', methods=['GET'])
-def hello_world():
-    return 'Hello, World!'
-
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 8111))
-    debug = bool(os.environ.get('DEBUG', False))
-    host = os.environ.get('HOST', '127.0.0.1')
-    app.run(port=port, debug=debug, host=host)
+import Horatio.views
 >>
 
 # update projects launchsettings.json.
@@ -64,6 +70,6 @@ if __name__ == '__main__':
 # development certificate. UNDER "http": add 
 "ASPIRE_ALLOW_UNSECURED_TRANSPORT": "true"
 
-dotnet add ../Ophelia.AppHost/Ophelia.AppHost.csproj package Aspire.Hosting.Python --version 9.0.0
+dotnet add ../Horatio.AppHost/Horatio.AppHost.csproj package Aspire.Hosting.Python --version 9.0.0
 
-dotnet run --project ../Ophelia.AppHost/Ophelia.AppHost.csproj
+dotnet run --project ../Horatio.AppHost/Horatio.AppHost.csproj
