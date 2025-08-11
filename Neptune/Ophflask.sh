@@ -16,6 +16,24 @@ source .venv/bin/activate
 # Windows
 # .venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
+
+# echo choice
+pip install git+https://github.com/huggingface/huggingface_hub
+pip install git+https://github.com/huggingface/huggingface_hub@my-feature-branch
+
+# echo choice
+# Current stable release for GPU (Linux / WSL2)
+pip install tensorflow[and-cuda]
+# or docker container
+docker pull tensorflow/tensorflow:latest  # Download latest stable image
+docker run -it -p 8888:8888 tensorflow/tensorflow:latest-jupyter  # Start Jupyter server
+
+
+# Install HuggingFace and dependencies for tensorflow-specific features
+# /!\ Warning: this is not equivalent to `pip install tensorflow`
+pip install 'huggingface_hub[tensorflow]'
+# Install dependencies for both torch-specific and CLI-specific features.
+pip install 'huggingface_hub[cli,torch]'
 python -m pip install -r requirements.txt
 
 # Create main.py, runserver.py (edit)
