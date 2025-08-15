@@ -79,56 +79,100 @@
         </div>
     </nav>
         <div class="container body-content" style="margin-top: 80px;">
-        <div class="jumbotron">
-            <div class="row">
-            <!-- Framework Templates -->
-            <div class="col-md-4 bg-white p-3 rounded shadow-sm mb-3">
-                <h5>ASP.NET Core with Aspire</h5>
-                <a class="btn btn-primary w-100 mb-2" href="https://github.com/jlabclouds/FrameworkTemplates/blob/main/FrameworkTemplates/ReadMe.md" target="_blank">View Documentation</a>
-                <button class="btn btn-outline-secondary w-100" onclick="alert('Create new Aspire project:\n\ndotnet new aspire-starter --name MyProject\ncd MyProject\ndotnet run')">
-                View Setup Commands
-                </button>
-            </div>
+            <div class="jumbotron">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" id="frameworkTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="aspire-tab" data-bs-toggle="tab" data-bs-target="#aspire" type="button" role="tab">ASP.NET Core with Aspire</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="flask-tab" data-bs-toggle="tab" data-bs-target="#flask" type="button" role="tab">Flask</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="rust-tab" data-bs-toggle="tab" data-bs-target="#rust" type="button" role="tab">Rust</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="cmake-tab" data-bs-toggle="tab" data-bs-target="#cmake" type="button" role="tab">CMake</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="react-tab" data-bs-toggle="tab" data-bs-target="#react" type="button" role="tab">React</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="k8s-tab" data-bs-toggle="tab" data-bs-target="#k8s" type="button" role="tab">Kubernetes</button>
+                    </li>
+                </ul>
 
-            <div class="col-md-4 bg-white p-3 rounded shadow-sm mb-3">
-                <h5>Flask Web Application</h5>
-                <a class="btn btn-primary w-100 mb-2" href="https://github.com/jlabclouds/Flask/blob/master/README.md" target="_blank">View Documentation</a>
-                <button class="btn btn-outline-secondary w-100" onclick="alert('Create Flask project:\n\npython -m venv venv\nsource venv/bin/activate\npip install flask\nflask run')">
-                View Setup Commands
-                </button>
-            </div>
+                <!-- Tab content -->
+                <div class="tab-content mt-3">
+                    <div class="tab-pane fade show active" id="aspire" role="tabpanel">
+                        <div class="bg-white p-3 rounded shadow-sm">
+                            <h5>ASP.NET Core with Aspire</h5>
+                            <a class="btn btn-primary w-100 mb-2" href="https://github.com/jlabclouds/FrameworkTemplates/blob/main/FrameworkTemplates/ReadMe.md" target="_blank">View Documentation</a>
+                            <pre class="bg-light p-3 mt-2">
+        dotnet new aspire-starter --name MyProject
+        cd MyProject
+        dotnet run</pre>
+                        </div>
+                    </div>
 
-            <div class="col-md-4 bg-white p-3 rounded shadow-sm mb-3">
-                <h5>Rust Project</h5>
-                <a class="btn btn-primary w-100 mb-2" href="https://github.com/jlabclouds/rust-template" target="_blank">View Documentation</a>
-                <button class="btn btn-outline-secondary w-100" onclick="alert('Create Rust project:\n\ncargo new my_project\ncd my_project\ncargo build\ncargo run')">
-                View Setup Commands
-                </button>
-            </div>
+                    <div class="tab-pane fade" id="flask" role="tabpanel">
+                        <div class="bg-white p-3 rounded shadow-sm">
+                            <h5>Flask Web Application</h5>
+                            <a class="btn btn-primary w-100 mb-2" href="https://github.com/jlabclouds/Flask/blob/master/README.md" target="_blank">View Documentation</a>
+                            <pre class="bg-light p-3 mt-2">
+        python -m venv venv
+        source venv/bin/activate
+        pip install flask
+        flask run</pre>
+                        </div>
+                    </div>
 
-            <div class="col-md-4 bg-white p-3 rounded shadow-sm mb-3">
-                <h5>CMake C/C++ Project</h5>
-                <a class="btn btn-primary w-100 mb-2" href="https://github.com/jlabclouds/FrameworkTemplates/blob/main/FrameworkTemplates/CMake/cmake-main/README.md" target="_blank">View Documentation</a>
-                <button class="btn btn-outline-secondary w-100" onclick="alert('Create CMake project:\n\nmkdir build && cd build\ncmake ..\nmake')">
-                View Setup Commands
-                </button>
-            </div>
+                    <div class="tab-pane fade" id="rust" role="tabpanel">
+                        <div class="bg-white p-3 rounded shadow-sm">
+                            <h5>Rust Project</h5>
+                            <a class="btn btn-primary w-100 mb-2" href="https://github.com/jlabclouds/rust-template" target="_blank">View Documentation</a>
+                            <pre class="bg-light p-3 mt-2">
+        cargo new my_project
+        cd my_project
+        cargo build
+        cargo run</pre>
+                        </div>
+                    </div>
 
-            <div class="col-md-4 bg-white p-3 rounded shadow-sm mb-3">
-                <h5>React Application</h5>
-                <a class="btn btn-primary w-100 mb-2" href="https://github.com/jlabclouds/React-ASP-TS-CS" target="_blank">View Documentation</a>
-                <button class="btn btn-outline-secondary w-100" onclick="alert('Create React project:\n\nnpm create vite@latest my-app -- --template react-ts\ncd my-app\nnpm install\nnpm run dev')">
-                View Setup Commands
-                </button>
-            </div>
+                    <div class="tab-pane fade" id="cmake" role="tabpanel">
+                        <div class="bg-white p-3 rounded shadow-sm">
+                            <h5>CMake C/C++ Project</h5>
+                            <a class="btn btn-primary w-100 mb-2" href="https://github.com/jlabclouds/FrameworkTemplates/blob/main/FrameworkTemplates/CMake/cmake-main/README.md" target="_blank">View Documentation</a>
+                            <pre class="bg-light p-3 mt-2">
+        mkdir build && cd build
+        cmake ..
+        make</pre>
+                        </div>
+                    </div>
 
-            <div class="col-md-4 bg-white p-3 rounded shadow-sm mb-3">
-                <h5>Kubernetes Deployment</h5>
-                <a class="btn btn-primary w-100 mb-2" href="https://github.com/jlabclouds/k8s-template" target="_blank">View Documentation</a>
-                <button class="btn btn-outline-secondary w-100" onclick="alert('Deploy to Kubernetes:\n\nkubectl create namespace my-app\nkubectl apply -f deployment.yaml\nkubectl get pods -n my-app')">
-                View Setup Commands
-                </button>
-            </div>
+                    <div class="tab-pane fade" id="react" role="tabpanel">
+                        <div class="bg-white p-3 rounded shadow-sm">
+                            <h5>React Application</h5>
+                            <a class="btn btn-primary w-100 mb-2" href="https://github.com/jlabclouds/React-ASP-TS-CS" target="_blank">View Documentation</a>
+                            <pre class="bg-light p-3 mt-2">
+        npm create vite@latest my-app -- --template react-ts
+        cd my-app
+        npm install
+        npm run dev</pre>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="k8s" role="tabpanel">
+                        <div class="bg-white p-3 rounded shadow-sm">
+                            <h5>Kubernetes Deployment</h5>
+                            <a class="btn btn-primary w-100 mb-2" href="https://github.com/jlabclouds/k8s-template" target="_blank">View Documentation</a>
+                            <pre class="bg-light p-3 mt-2">
+        kubectl create namespace my-app
+        kubectl apply -f deployment.yaml
+        kubectl get pods -n my-app</pre>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     <div class="container body-content">
