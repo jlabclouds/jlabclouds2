@@ -375,6 +375,54 @@
             };
         }
 
+        // Search 
+        function searchDomains() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const links = document.querySelectorAll('a.btn-default');
+            let found = false;
+
+            links.forEach(link => {
+                const title = link.getAttribute('title')?.toLowerCase() || '';
+                const href = link.getAttribute('href').toLowerCase();
+                
+                if (title.includes(searchInput) || href.includes(searchInput)) {
+                    link.style.opacity = '1';
+                    found = true;
+                } else {
+                    link.style.opacity = '0.3';
+                }
+            });
+
+            // If no results found, show a message
+            const existingAlert = document.querySelector('.alert');
+            if (existingAlert) {
+                existingAlert.remove();
+            }
+
+            if (!found && searchInput !== '') {
+                const alert = document.createElement('div');
+                alert.className = 'alert alert-warning mt-3';
+                alert.textContent = 'No matching results found.';
+                document.querySelector('.container').insertBefore(alert, document.querySelector('.row'));
+            }
+        }
+
+        // Add event listener for real-time search
+        document.getElementById('searchInput').addEventListener('input', searchDomains);
+
+        // Add event listener to reset search when input is cleared
+        document.getElementById('searchInput').addEventListener('change', function() {
+            if (this.value === '') {
+                const links = document.querySelectorAll('a.btn-default');
+                links.forEach(link => link.style.opacity = '1');
+                const existingAlert = document.querySelector('.alert');
+                if (existingAlert) {
+                    existingAlert.remove();
+                }
+            }
+        });
+
+
         // Curl command copy logic
         function copyCurlCommand(command) {
             navigator.clipboard.writeText(command)
