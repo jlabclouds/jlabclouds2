@@ -291,21 +291,21 @@
             };
 
             // D3 force simulation setup
-            const width = 800;
-            const height = 500;
+            const bubbleWidth = 800;
+            const bubbleHeight = 500;
 
             const simulation = d3.forceSimulation(data.nodes)
             .force("link", d3.forceLink(data.links).id(d => d.id))
             .force("charge", d3.forceManyBody())
-            .force("center", d3.forceCenter(width / 2, height / 2));
+            .force("center", d3.forceCenter(bubbleWidth / 2, bubbleHeight / 2));
 
-            const svg = d3.select("#bubbleChart")
+            const bubbleSvg = d3.select("#bubbleChart")
             .append("svg")
-            .attr("width", width)
-            .attr("height", height);
+            .attr("width", bubbleWidth)
+            .attr("height", bubbleHeight);
 
             // Add links
-            const link = svg.append("g")
+            const bubbleLink = bubbleSvg.append("g")
             .selectAll("line")
             .data(data.links)
             .join("line")
@@ -313,7 +313,7 @@
             .attr("stroke-opacity", 0.6);
 
             // Add nodes
-            const node = svg.append("g")
+            const bubbleNode = bubbleSvg.append("g")
             .selectAll("circle")
             .data(data.nodes)
             .join("circle")
@@ -346,8 +346,6 @@
                 .attr("x", d => d.x)
                 .attr("y", d => d.y);
             });
-        </script>
-
         </script>
 
         <!-- Add D3.js visualization -->
@@ -458,22 +456,22 @@
 
             // Create the tree diagram
             const margin = {top: 20, right: 90, bottom: 20, left: 90};
-            const width = 1200 - margin.left - margin.right;
-            const height = 800 - margin.top - margin.bottom;
+            const treeWidth = 1200 - margin.left - margin.right;
+            const treeHeight = 800 - margin.top - margin.bottom;
 
-            const svg = d3.select("#technologyMap")
+            const treeSvg = d3.select("#technologyMap")
             .append("svg")
-            .attr("width", width + margin.right + margin.left)
-            .attr("height", height + margin.top + margin.bottom)
+            .attr("width", treeWidth + margin.right + margin.left)
+            .attr("height", treeHeight + margin.top + margin.bottom)
             .append("g")
             .attr("transform", `translate(${margin.left},${margin.top})`);
 
-            const tree = d3.tree().size([height, width]);
+            const tree = d3.tree().size([treeHeight, treeWidth]);
             const root = d3.hierarchy(technologyData);
             const treeData = tree(root);
 
             // Add links
-            svg.selectAll(".link")
+            treeSvg.selectAll(".link")
             .data(treeData.links())
             .enter()
             .append("path")
@@ -486,7 +484,7 @@
             .style("stroke-width", "2px");
 
             // Add nodes
-            const node = svg.selectAll(".node")
+            const treeNode = treeSvg.selectAll(".node")
             .data(treeData.descendants())
             .enter()
             .append("g")
