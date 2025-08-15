@@ -347,6 +347,175 @@
                 .attr("y", d => d.y);
             });
         </script>
+
+        </script>
+
+        <!-- Add D3.js visualization -->
+        <div id="technologyMap" class="mt-4 mb-4" style="height: 800px;"></div>
+        <script>
+            // Technology stack data structure
+            const technologyData = {
+            name: "Technology Stack",
+            children: [
+                {
+                name: "Infrastructure",
+                children: [
+                    {
+                    name: "Linux Distributions",
+                    children: [
+                        {name: "Oracle Linux", url: "https://www.oracle.com/linux/"},
+                        {name: "Alpine Linux", url: "https://alpinelinux.org/"},
+                        {name: "CentOS", url: "https://www.centos.org/"},
+                        {name: "Debian", url: "https://www.debian.org/"},
+                        {name: "Ubuntu/ROS2", url: "https://ubuntu.com/"},
+                        {name: "SUSE", url: "https://www.suse.com/"},
+                        {name: "Fedora", url: "https://getfedora.org/"},
+                        {name: "Kali", url: "https://www.kali.org/"},
+                        {name: "FreeBSD", url: "https://www.freebsd.org/"}
+                    ]
+                    },
+                    {
+                    name: "Windows",
+                    children: [
+                        {name: "Windows Server", url: "https://www.microsoft.com/en-us/windows-server"},
+                        {name: "Windows ISOs", url: "https://www.microsoft.com/software-download/"}
+                    ]
+                    }
+                ]
+                },
+                {
+                name: "Cloud Services",
+                children: [
+                    {
+                    name: "Major Platforms",
+                    children: [
+                        {name: "AWS", url: "https://aws.amazon.com/"},
+                        {name: "Azure", url: "https://azure.microsoft.com/"},
+                        {name: "GCP", url: "https://cloud.google.com/"},
+                        {name: "OCI", url: "https://www.oracle.com/cloud/"},
+                        {name: "IBM Cloud", url: "https://www.ibm.com/cloud"},
+                        {name: "VMware", url: "https://www.vmware.com/"},
+                        {name: "Salesforce", url: "https://www.salesforce.com/"}
+                    ]
+                    },
+                    {
+                    name: "DevOps Tools",
+                    children: [
+                        {name: "Confluence", url: "https://www.atlassian.com/software/confluence"},
+                        {name: "Jira", url: "https://www.atlassian.com/software/jira"},
+                        {name: "ServiceNow", url: "https://www.servicenow.com/"},
+                        {name: "Power Pages", url: "https://powerpages.microsoft.com/"},
+                        {name: "Infosys", url: "https://www.infosys.com/"},
+                        {name: "Flock", url: "https://www.flock.com/"}
+                    ]
+                    }
+                ]
+                },
+                {
+                name: "Development",
+                children: [
+                    {
+                    name: "CI/CD",
+                    children: [
+                        {name: "Docker", url: "https://www.docker.com/"},
+                        {name: "Podman", url: "https://podman.io/"},
+                        {name: "Vela", url: "https://go-vela.github.io/docs/"},
+                        {name: "AWS ECR", url: "https://aws.amazon.com/ecr/"},
+                        {name: "JFrog", url: "https://jfrog.com/"},
+                        {name: "OPA", url: "https://www.openpolicyagent.org/"}
+                    ]
+                    },
+                    {
+                    name: "Languages & Frameworks",
+                    children: [
+                        {name: "React", url: "https://reactjs.org/"},
+                        {name: "Angular", url: "https://angular.io/"},
+                        {name: "FastAPI", url: "https://fastapi.tiangolo.com/"},
+                        {name: "Golang", url: "https://golang.org/"},
+                        {name: "Kotlin", url: "https://kotlinlang.org/"},
+                        {name: "Rust", url: "https://www.rust-lang.org/"},
+                        {name: "Ruby", url: "https://www.ruby-lang.org/"},
+                        {name: "Perl", url: "https://www.perl.org/"},
+                        {name: "Scala", url: "https://www.scala-lang.org/"},
+                        {name: "Swift", url: "https://developer.apple.com/swift/"}
+                    ]
+                    }
+                ]
+                },
+                {
+                name: "AI/ML",
+                children: [
+                    {name: "Python", url: "https://www.python.org/"},
+                    {name: "Jupyter", url: "https://jupyter.org/"},
+                    {name: "HuggingFace", url: "https://huggingface.co/"},
+                    {name: "TensorFlow", url: "https://www.tensorflow.org/"},
+                    {name: "PyTorch", url: "https://pytorch.org/"},
+                    {name: "scikit-learn", url: "https://scikit-learn.org/"}
+                ]
+                }
+            ]
+            };
+
+            // Create the tree diagram
+            const margin = {top: 20, right: 90, bottom: 20, left: 90};
+            const width = 1200 - margin.left - margin.right;
+            const height = 800 - margin.top - margin.bottom;
+
+            const svg = d3.select("#technologyMap")
+            .append("svg")
+            .attr("width", width + margin.right + margin.left)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+            const tree = d3.tree().size([height, width]);
+            const root = d3.hierarchy(technologyData);
+            const treeData = tree(root);
+
+            // Add links
+            svg.selectAll(".link")
+            .data(treeData.links())
+            .enter()
+            .append("path")
+            .attr("class", "link")
+            .attr("d", d3.linkHorizontal()
+                .x(d => d.y)
+                .y(d => d.x))
+            .style("fill", "none")
+            .style("stroke", "#ccc")
+            .style("stroke-width", "2px");
+
+            // Add nodes
+            const node = svg.selectAll(".node")
+            .data(treeData.descendants())
+            .enter()
+            .append("g")
+            .attr("class", "node")
+            .attr("transform", d => `translate(${d.y},${d.x})`);
+
+            // Add circles for nodes
+            node.append("circle")
+            .attr("r", 10)
+            .style("fill", "#fff")
+            .style("stroke", "steelblue")
+            .style("stroke-width", "3px");
+
+            // Add labels
+            node.append("text")
+            .attr("dy", ".35em")
+            .attr("x", d => d.children ? -13 : 13)
+            .style("text-anchor", d => d.children ? "end" : "start")
+            .text(d => d.data.name)
+            .style("font-size", "12px")
+            .style("font-family", "Arial")
+            .on("click", function(event, d) {
+                if (d.data.url) {
+                window.open(d.data.url, '_blank');
+                }
+            })
+            .style("cursor", d => d.data.url ? "pointer" : "default")
+            .style("fill", d => d.data.url ? "blue" : "black");
+        </script>
         <footer>
             <p>&copy; <span id="year"></span> - My Flask Application</p>
         </footer>
