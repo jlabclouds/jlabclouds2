@@ -25,23 +25,24 @@
                     <li class="nav-item">
                        <!-- Exam Guides Dropdown Button -->
                         <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" onclick="toggleExamGuidesDropdown()" id="examguidesDropdownBtn">
-                                Exam Guides
-                            </button>
-                            <div class="dropdown-menu" id="examguidesDropdownMenu">
-                                <a class="dropdown-item" href="jlabclouds/RHCSA.md">RHCSA</a>
-                                <a class="dropdown-item" href="jlabclouds/GCPPCA.html">GCPPCA</a>
+                            <button class="btn btn-default dropdown-toggle" id="examguidesDropdownBtn" data-bs-toggle="dropdown">
+                            Exam Guides
+                        </button>
+                        <ul class="dropdown-menu" id="examguidesDropdownMenu">
+                            <li><a class="dropdown-item" href="jlabclouds/RHCSA.md">RHCSA</a></li>
+                            <li><a class="dropdown-item" href="jlabclouds/GCPPCA.html">GCPPCA</a></li>
                                 <a class="dropdown-item" href="temp/4.html">4</a>
                                 <a class="dropdown-item" href="temp/5.html">5</a>
-                            </div>
+                        </ul>
+                    </li>
                        <!-- Apps Dropdown Button -->
                         <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" onclick="toggleAppsDropdown()" id="appsDropdownBtn">
-                                Apps
-                            </button>
-                            <div class="dropdown-menu" id="appsDropdownMenu">
-                                <a class="dropdown-item" href="Saturn/Global.html">Saturn</a>
-                                <a class="dropdown-item" href="Saturn/Chess.html">Chess</a>
+                            <button class="btn btn-default dropdown-toggle" id="appsDropdownBtn" data-bs-toggle="dropdown">
+                            Apps
+                        </button>
+                        <ul class="dropdown-menu" id="appsDropdownMenu">
+                            <li><a class="dropdown-item" href="Saturn/Global.html">Saturn</a></li>
+                            <li><a class="dropdown-item" href="Saturn/Chess.html">Chess</a></li>
                                 <a class="dropdown-item" href="Saturn/ChessAdv.html">ChessAdv</a>
                                 <a class="dropdown-item" href="Neptune/Neptune.html">Neptune</a>
                                 <a class="dropdown-item" href="Saturn/Fleet.html">Fleet</a>
@@ -174,31 +175,36 @@
         kubectl get pods -n my-app</pre>
                         </div>
                     </div>
+
+                    <div class="tab-pane fade" id="el9" role="tabpanel">
+                        <div class="bg-white p-3 rounded shadow-sm">
+                            <h5>EL9</h5>
+                            <a class="btn btn-primary w-100 mb-2" href="https://github.com/jlabclouds/k8s-template" target="_blank">View Documentation</a>
+                            <button class="btn btn-default w-100 mb-2" onclick="copyCurlCommand(`curl -fsSL https://raw.githubusercontent.com/jlabclouds/jlabclouds.github.io/refs/heads/main/linux/el9_setup.sh -o el9_setup.sh
+                            sudo bash el9_setup.sh`)">Curl</button>
+                            <p><a class="btn btn-primary w-100" href="https://github.com/jlabclouds/jlabclouds.github.io/blob/main/linux/el9_setup.md" target="_blank">Setup</a></p>
+                            <pre class="bg-light p-3 mt-2">
+        kubectl create namespace my-app
+        kubectl apply -f deployment.yaml
+        kubectl get pods -n my-app</pre>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="ros" role="tabpanel">
+                        <div class="bg-white p-3 rounded shadow-sm">
+                            <h5>Ros</h5>
+                            <a class="btn btn-primary w-100 mb-2" href="https://github.com/jlabclouds/k8s-template" target="_blank">View Documentation</a>
+                            <button class="btn btn-default w-100 mb-2" onclick="copyCurlCommand('curl -fsSL https://raw.githubusercontent.com/jlabclouds/jlabclouds.github.io/refs/heads/main/linux/el9_setup.sh -o el9_setup.sh\nsudo bash el9_setup.sh')">Copy curl command</button>
+                            <p><a class="btn btn-primary w-100" href="https://raw.githubusercontent.com/jlabclouds/jlabclouds.github.io/refs/heads/main/linux/el9_setup.sh" target="_blank">Raw</a></p>
+                            <pre class="bg-light p-3 mt-2">
+        kubectl create namespace my-app
+        kubectl apply -f deployment.yaml
+        kubectl get pods -n my-app</pre>
                 </div>
             </div>
         </div>
+    </div>
     <div class="container body-content">
-        <div class="jumbotron">
-            <div class="row">
-                <!-- Quickstart Cards -->
-                <div class="col-md-4 bg-white p-3 rounded shadow-sm mb-3">
-                    <p class="fw-bold">Linux 9 Quickstart</p>
-                    <button class="btn btn-default w-100 mb-2" onclick="copyCurlCommand(`curl -fsSL https://raw.githubusercontent.com/jlabclouds/jlabclouds.github.io/refs/heads/main/linux/el9_setup.sh -o el9_setup.sh
-                sudo bash el9_setup.sh`)">Copy curl command</button>
-                    <p><a class="btn btn-primary w-100" href="https://github.com/jlabclouds/jlabclouds.github.io/blob/main/linux/el9_setup.md" target="_blank">Setup</a></p>
-                </div>
-                <div class="col-md-4 bg-white p-3 rounded shadow-sm mb-3">
-                    <p class="fw-bold">Ubuntu/ROS/Kilted</p>
-                    <button class="btn btn-default w-100 mb-2" onclick="copyCurlCommand('curl -fsSL https://raw.githubusercontent.com/jlabclouds/jlabclouds.github.io/refs/heads/main/linux/el9_setup.sh -o el9_setup.sh\nsudo bash el9_setup.sh')">Copy curl command</button>
-                    <p><a class="btn btn-primary w-100" href="https://raw.githubusercontent.com/jlabclouds/jlabclouds.github.io/refs/heads/main/linux/el9_setup.sh" target="_blank">Raw</a></p>
-                </div>
-                <div class="col-md-4 bg-white p-3 rounded shadow-sm mb-3">
-                    <p class="fw-bold">Saturn Quickstart</p>
-                    <button class="btn btn-default w-100 mb-2" onclick="copyCurlCommand('curl -fsSL https://raw.githubusercontent.com/jlabclouds/jlabclouds.github.io/refs/heads/main/linux/el9_setup.sh -o el9_setup.sh\nsudo bash el9_setup.sh')">Copy curl command</button>
-                    <p><a class="btn btn-primary w-100" href="https://raw.githubusercontent.com/jlabclouds/jlabclouds.github.io/refs/heads/main/linux/el9_setup.sh" target="_blank">Raw</a></p>
-                </div>
-            </div>
-        </div>
         <div class="row mt-4">
             <!-- Security Frameworks -->
             <div class="col-md-4 mb-3">
@@ -340,26 +346,14 @@
         </footer>
     </div>
     <script>
-        // Search bar logic
-        let query = '';
-        const searchInput = document.getElementById('searchInput');
-        if (searchInput) {
-            searchInput.addEventListener('input', function() {
-                query = this.value;
-            });
-        }
-        function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-                console.log('Search query:', query);
-                // Add your search logic here
-            }
-        }
-
         // Enhanced search functionality
         const searchInput = document.getElementById('searchInput');
         searchInput.addEventListener('input', debounce(function(e) {
-            // Implement advanced search logic here
             console.log('Searching:', e.target.value);
+            // Example search logic
+            if (e.target.value.toLowerCase() === 'aspire') {
+                alert('Redirecting to Aspire documentation...');
+            }            
         }, 300));
 
         // Debounce function
