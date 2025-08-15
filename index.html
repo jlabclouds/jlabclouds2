@@ -268,252 +268,216 @@
             </div>
             </div>
         </div>
-
-        <!-- Add D3.js for bubble chart -->
-        <script src="https://d3js.org/d3.v7.min.js"></script>
-        <script>
-            // Bubble chart initialization
-            const data = {
-            nodes: [
-                {id: "Frontend", group: 1},
-                {id: "Backend", group: 2},
-                {id: "Database", group: 3},
-                {id: "Security", group: 4},
-                {id: "Cloud", group: 5}
-            ],
-            links: [
-                {source: "Frontend", target: "Backend"},
-                {source: "Backend", target: "Database"},
-                {source: "Security", target: "Frontend"},
-                {source: "Security", target: "Backend"},
-                {source: "Cloud", target: "Backend"}
-            ]
-            };
-
-            // D3 force simulation setup
-            const bubbleWidth = 800;
-            const bubbleHeight = 500;
-
-            const simulation = d3.forceSimulation(data.nodes)
-            .force("link", d3.forceLink(data.links).id(d => d.id))
-            .force("charge", d3.forceManyBody())
-            .force("center", d3.forceCenter(bubbleWidth / 2, bubbleHeight / 2));
-
-            const bubbleSvg = d3.select("#bubbleChart")
-            .append("svg")
-            .attr("width", bubbleWidth)
-            .attr("height", bubbleHeight);
-
-            // Add links
-            const bubbleLink = bubbleSvg.append("g")
-            .selectAll("line")
-            .data(data.links)
-            .join("line")
-            .attr("stroke", "#999")
-            .attr("stroke-opacity", 0.6);
-
-            // Add nodes
-            const bubbleNode = bubbleSvg.append("g")
-            .selectAll("circle")
-            .data(data.nodes)
-            .join("circle")
-            .attr("r", 20)
-            .attr("fill", d => d3.schemeCategory10[d.group]);
-
-            // Add labels
-            const labels = svg.append("g")
-            .selectAll("text")
-            .data(data.nodes)
-            .join("text")
-            .text(d => d.id)
-            .attr("font-size", "12px")
-            .attr("dx", 25)
-            .attr("dy", 5);
-
-            // Update positions
-            simulation.on("tick", () => {
-            link
-                .attr("x1", d => d.source.x)
-                .attr("y1", d => d.source.y)
-                .attr("x2", d => d.target.x)
-                .attr("y2", d => d.target.y);
-
-            node
-                .attr("cx", d => d.x)
-                .attr("cy", d => d.y);
-
-            labels
-                .attr("x", d => d.x)
-                .attr("y", d => d.y);
-            });
-        </script>
-
-        <!-- Add D3.js visualization -->
-        <div id="technologyMap" class="mt-4 mb-4" style="height: 800px;"></div>
-        <script>
-            // Technology stack data structure
-            const technologyData = {
-            name: "Technology Stack",
-            children: [
-                {
-                name: "Infrastructure",
-                children: [
-                    {
-                    name: "Linux Distributions",
-                    children: [
-                        {name: "Oracle Linux", url: "https://www.oracle.com/linux/"},
-                        {name: "Alpine Linux", url: "https://alpinelinux.org/"},
-                        {name: "CentOS", url: "https://www.centos.org/"},
-                        {name: "Debian", url: "https://www.debian.org/"},
-                        {name: "Ubuntu/ROS2", url: "https://ubuntu.com/"},
-                        {name: "SUSE", url: "https://www.suse.com/"},
-                        {name: "Fedora", url: "https://getfedora.org/"},
-                        {name: "Kali", url: "https://www.kali.org/"},
-                        {name: "FreeBSD", url: "https://www.freebsd.org/"}
-                    ]
-                    },
-                    {
-                    name: "Windows",
-                    children: [
-                        {name: "Windows Server", url: "https://www.microsoft.com/en-us/windows-server"},
-                        {name: "Windows ISOs", url: "https://www.microsoft.com/software-download/"}
-                    ]
-                    }
-                ]
-                },
-                {
-                name: "Cloud Services",
-                children: [
-                    {
-                    name: "Major Platforms",
-                    children: [
-                        {name: "AWS", url: "https://aws.amazon.com/"},
-                        {name: "Azure", url: "https://azure.microsoft.com/"},
-                        {name: "GCP", url: "https://cloud.google.com/"},
-                        {name: "OCI", url: "https://www.oracle.com/cloud/"},
-                        {name: "IBM Cloud", url: "https://www.ibm.com/cloud"},
-                        {name: "VMware", url: "https://www.vmware.com/"},
-                        {name: "Salesforce", url: "https://www.salesforce.com/"}
-                    ]
-                    },
-                    {
-                    name: "DevOps Tools",
-                    children: [
-                        {name: "Confluence", url: "https://www.atlassian.com/software/confluence"},
-                        {name: "Jira", url: "https://www.atlassian.com/software/jira"},
-                        {name: "ServiceNow", url: "https://www.servicenow.com/"},
-                        {name: "Power Pages", url: "https://powerpages.microsoft.com/"},
-                        {name: "Infosys", url: "https://www.infosys.com/"},
-                        {name: "Flock", url: "https://www.flock.com/"}
-                    ]
-                    }
-                ]
-                },
-                {
-                name: "Development",
-                children: [
-                    {
-                    name: "CI/CD",
-                    children: [
-                        {name: "Docker", url: "https://www.docker.com/"},
-                        {name: "Podman", url: "https://podman.io/"},
-                        {name: "Vela", url: "https://go-vela.github.io/docs/"},
-                        {name: "AWS ECR", url: "https://aws.amazon.com/ecr/"},
-                        {name: "JFrog", url: "https://jfrog.com/"},
-                        {name: "OPA", url: "https://www.openpolicyagent.org/"}
-                    ]
-                    },
-                    {
-                    name: "Languages & Frameworks",
-                    children: [
-                        {name: "React", url: "https://reactjs.org/"},
-                        {name: "Angular", url: "https://angular.io/"},
-                        {name: "FastAPI", url: "https://fastapi.tiangolo.com/"},
-                        {name: "Golang", url: "https://golang.org/"},
-                        {name: "Kotlin", url: "https://kotlinlang.org/"},
-                        {name: "Rust", url: "https://www.rust-lang.org/"},
-                        {name: "Ruby", url: "https://www.ruby-lang.org/"},
-                        {name: "Perl", url: "https://www.perl.org/"},
-                        {name: "Scala", url: "https://www.scala-lang.org/"},
-                        {name: "Swift", url: "https://developer.apple.com/swift/"}
-                    ]
-                    }
-                ]
-                },
-                {
-                name: "AI/ML",
-                children: [
-                    {name: "Python", url: "https://www.python.org/"},
-                    {name: "Jupyter", url: "https://jupyter.org/"},
-                    {name: "HuggingFace", url: "https://huggingface.co/"},
-                    {name: "TensorFlow", url: "https://www.tensorflow.org/"},
-                    {name: "PyTorch", url: "https://pytorch.org/"},
-                    {name: "scikit-learn", url: "https://scikit-learn.org/"}
-                ]
-                }
-            ]
-            };
-
-            // Create the tree diagram
-            const margin = {top: 20, right: 90, bottom: 20, left: 90};
-            const treeWidth = 1200 - margin.left - margin.right;
-            const treeHeight = 800 - margin.top - margin.bottom;
-
-            const treeSvg = d3.select("#technologyMap")
-            .append("svg")
-            .attr("width", treeWidth + margin.right + margin.left)
-            .attr("height", treeHeight + margin.top + margin.bottom)
-            .append("g")
-            .attr("transform", `translate(${margin.left},${margin.top})`);
-
-            const tree = d3.tree().size([treeHeight, treeWidth]);
-            const root = d3.hierarchy(technologyData);
-            const treeData = tree(root);
-
-            // Add links
-            treeSvg.selectAll(".link")
-            .data(treeData.links())
-            .enter()
-            .append("path")
-            .attr("class", "link")
-            .attr("d", d3.linkHorizontal()
-                .x(d => d.y)
-                .y(d => d.x))
-            .style("fill", "none")
-            .style("stroke", "#ccc")
-            .style("stroke-width", "2px");
-
-            // Add nodes
-            const treeNode = treeSvg.selectAll(".node")
-            .data(treeData.descendants())
-            .enter()
-            .append("g")
-            .attr("class", "node")
-            .attr("transform", d => `translate(${d.y},${d.x})`);
-
-            // Add circles for nodes
-            node.append("circle")
-            .attr("r", 10)
-            .style("fill", "#fff")
-            .style("stroke", "steelblue")
-            .style("stroke-width", "3px");
-
-            // Add labels
-            node.append("text")
-            .attr("dy", ".35em")
-            .attr("x", d => d.children ? -13 : 13)
-            .style("text-anchor", d => d.children ? "end" : "start")
-            .text(d => d.data.name)
-            .style("font-size", "12px")
-            .style("font-family", "Arial")
-            .on("click", function(event, d) {
-                if (d.data.url) {
-                window.open(d.data.url, '_blank');
-                }
-            })
-            .style("cursor", d => d.data.url ? "pointer" : "default")
-            .style("fill", d => d.data.url ? "blue" : "black");
-        </script>
+        <div class="row mt-4">
+            <!-- Distro/Svr -->
+            <div class="col-md-4 mb-3">
+                <div class="bg-white p-3 rounded shadow-sm">
+                    <h2>Distro/Svr <a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></h2>
+                        <!-- Distro icons here (unchanged for brevity) -->
+            <a class="btn btn-default" href="https://yum.oracle.com/oracle-linux-isos.html" target="_blank" rel="noopener noreferrer" title="Oracle Linux ISOs">
+                <img src="https://www.kernel.org/theme/images/logos/favicon.png" alt="Linux Distros logo" style="width: 32px; height: 32px;" />
+            </a> 
+            <a class="btn btn-default" href="https://docs.oracle.com/en/operating-systems/oracle-linux/9/" target="_blank" rel="noopener noreferrer" title="Oracle Linux Docs">
+                <img src="https://docs.oracle.com/sp_common/site-template/ohc-common/img/o-icon/favicon.ico" alt="Rhel logo" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://alpinelinux.org/downloads/" target="_blank" rel="noopener noreferrer" title="Alpine Linux">
+                <img src="https://alpinelinux.org/alpine-logo.ico" alt="Alpine logo" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://www.centos.org/" target="_blank" rel="noopener noreferrer" title="CentOS">
+                <img src="https://www.centos.org/assets/icons/apple-touch-icon.png" alt="" style="width: 32px; height: 32px;" />
+            </a> 
+            <a class="btn btn-default" href="https://www.debian.org/" target="_blank" rel="noopener noreferrer" title="Debian">
+                <img src="https://www.debian.org/favicon.ico" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://www.ubuntu.com/" target="_blank" rel="noopener noreferrer" title="ROS2 , Gazebo">
+                <img src="https://assets.ubuntu.com/v1/f38b9c7e-COF%20apple-touch-icon.png" alt="" style="width: 32px; height: 32px;" />
+            </a> 
+            <a class="btn btn-default" href="https://www.suse.com/" target="_blank" rel="noopener noreferrer" title="SUSE">
+                <img src="https://www.suse.com/favicon.ico" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://www.fedoraproject.org/" target="_blank" rel="noopener noreferrer" title="Fedora">
+                <img src="https://www.fedoraproject.org/favicon.ico" alt="" style="width: 32px; height: 32px;" />
+            </a> 
+            <a class="btn btn-default" href="https://www.kali.org/tools/" target="_blank" rel="noopener noreferrer" title="Kali tools">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Kali-dragon-icon.svg" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://www.freebsd.org/" target="_blank" rel="noopener noreferrer" title="FreeBSD">
+                <img src="https://docs.freebsd.org/favicon.ico" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://www.microsoft.com/en-us/software-download/" target="_blank" rel="noopener noreferrer" title="Windows ISOs">
+                <img src="https://www.microsoft.com/favicon.ico?v2" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://www.microsoft.com/en-us/evalcenter" target="_blank" rel="noopener noreferrer" title="Windows Server ISOs">
+                <img src="https://www.microsoft.com/favicon.ico?v2" alt="" style="width: 32px; height: 32px;" />
+            </a>
+                    </p>
+                </div>
+            </div>
+            <!-- Cloud -->
+            <div class="col-md-4 mb-3">
+                <div class="bg-white p-3 rounded shadow-sm">
+                    <h2>Cloud <a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></h2>
+                        <!-- Cloud icons here (unchanged for brevity) -->
+            <a class="btn btn-default" href="https://support.broadcom.com" target="_blank" rel="noopener noreferrer" title="VMware Account Creation / Support Portal">
+                    <img src="https://www.broadcom.com/favicon-96x96.png" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://cloud.google.com" target="_blank" rel="noopener noreferrer" title="GCP Portal">
+                    <img src="https://www.gstatic.com/devrel-devsite/prod/v0d244f667a3683225cca86d0ecf9b9b81b1e734e55a030bdcd3f3094b835c987/cloud/images/favicons/onecloud/super_cloud.png" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://www.oracle.com/cloud/" target="_blank" rel="noopener noreferrer" title="OCI Portal">
+                    <img src="https://docs.oracle.com/sp_common/site-template/ohc-common/img/o-icon/favicon.ico" alt="" style="width: 32px; height: 32px;" />
+            </a> 
+            <a class="btn btn-default" href="https://portal.azure.com" target="_blank" rel="noopener noreferrer" title="AZ Portal">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://aex.dev.azure.com" target="_blank" rel="noopener noreferrer" title="AZ Repos">
+                    <img src="https://aex.dev.azure.com/favicon.ico" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://www.microsoft.com/en-us/power-platform/products/power-pages" target="_blank" rel="noopener noreferrer" title="Power Pages">
+                    <img src="https://www.microsoft.com/content/dam/microsoft/final/en-us/microsoft-brand/icons/PP-Hero_Icon_PowerPages.svg" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://aws.amazon.com/" target="_blank" rel="noopener noreferrer" title="AWS Portal / BrowserStack>App Automate>Appium">
+                    <img src="https://aws.amazon.com/favicon.ico" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://www.ibm.com/cloud" target="_blank" rel="noopener noreferrer" title="IBM Cloud">
+                    <img src="https://www.ibm.com/favicon.ico" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://www.salesforce.com/" target="_blank" rel="noopener noreferrer" title="SF Portal">
+                    <img src="https://www.salesforce.com/c2/public/app/favicon.ico" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://www.atlassian.com/software/confluence" target="_blank" rel="noopener noreferrer" title="Confluence">
+                    <img src="https://confluence.atlassian.com/favicon.ico" alt="Atlassian Logo" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://jira.atlassian.com" target="_blank" rel="noopener noreferrer" title="Jira">
+                    <img src="https://jira.atlassian.com/s/nbfadq/9120022/1rg1jpn/_/jira-favicon-hires.png" alt="Jira Logo" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://www.servicenow.com/" target="_blank" rel="noopener noreferrer" title="ServiceNow">
+                    <img src="https://www.servicenow.com/content/dam/servicenow-assets/public/en-us/images/og-images/favicon.ico" alt="ServiceNow Logo" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://www.infosys.com/services/cyber-security.html" target="_blank" rel="no opener noreferrer" title="Infosys Consultation">
+                    <img src="https://www.infosys.com/content/dam/infosys-web/en/global-resource/icons/apple-touch-icon.png" alt="" style="width: 32px; height: 32px;" />
+            </a> 
+            <a class="btn btn-default" href="https://www.flocksafety.com/" target="_blank" rel="noopener noreferrer" title="Flock">
+                    <img src="https://cdn.prod.website-files.com/6821cc9ecc966b7f252b372e/682b0cbd11cc8b08424afe0f_Webclip%20or%20Apple%20Touch%20Icon.png" alt="Flock Logo" style="width: 32px; height: 32px;" />
+            </a>
+                </div>
+            </div>
+            <!-- CI/CD -->
+            <div class="col-md-4 mb-3">
+                <div class="bg-white p-3 rounded shadow-sm">
+                    <h2>CI/CD <a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></h2>
+                        <!-- CI/CD icons here (unchanged for brevity) -->
+            <a class="btn btn-default" href="https://www.docker.com" target="_blank" rel="noopener noreferrer" title="Docker">
+                    <img src="https://docs.docker.com/favicons/docs@2x.ico" alt="Docker Logo" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://podman.io/get-started" target="_blank" rel="noopener noreferrer" title="Podman">
+                    <img src="https://podman.io/favicon.ico" alt="Podman Logo" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://go-vela.github.io/docs/installation/install-vela" target="_blank" rel="noopener noreferrer" title="Vela">
+                    <img src="https://go-vela.github.io/docs/img/favicon.ico" alt="Vela Logo" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/Repositories.html" target="_blank" rel="noopener noreferrer" title="AWS ECR">
+                    <img src="https://docs.aws.amazon.com/assets/images/favicon.ico" alt="AWS ECR Logo" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://jfrog.com/integrations/" target="_blank" rel="noopener noreferrer" title="JFrog">
+                    <img src="" alt="JFrog" style="width: 32px; height: 32px;" />
+            <a class="btn btn-default" href="https://www.openpolicyagent.org" target="_blank" rel="noopener noreferrer" title="OPA">
+                    <img src="https://www.openpolicyagent.org/assets/images/default-92a1aebfb4ea664b7d9c550b29f450a5.png" alt="JFrog" style="width: 32px; height: 32px;" />
+            </a>
+                </div>
+            </div>
+            <!-- Libraries -->
+            <div class="col-md-4 mb-3">
+                <div class="bg-white p-3 rounded shadow-sm">
+                    <h2>Libraries <a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></h2>
+                        <!-- Library icons here (unchanged for brevity) -->
+            <a class="btn btn-default" href="https://developer.mozilla.org/en-US/" target="_blank" rel="noopener noreferrer" title="">
+                <img src="https://developer.mozilla.org/apple-touch-icon.528534bba673c38049c2.png" alt="" style="width: 32px; height: 32px;" />
+            </a> 
+            <a class="btn btn-default" href="https://www.w3schools.com" target="_blank" rel="noopener noreferrer" title="W3">
+                <img src="https://www.w3schools.com/favicon-32x32.png" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://it-tools.tech">
+                <img src="https://it-tools.tech/favicon-32x32.png" alt="it-tools logo" />
+            </a> 
+            <a class="btn btn-default" href="https://react.dev/" target="_blank" rel="noopener noreferrer" title="React">
+                <img src="https://react.dev/apple-touch-icon.png" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://codesandbox.io/p/sandbox/react-new" target="_blank" rel="noopener noreferrer" title="React Sandbox">
+                <img src="https://codesandbox.io/csb-ios.svg" alt="" style="width: 32px; height: 32px;" />
+            </a>                
+            <a class="btn btn-default" href="https://go.dev/" target="_blank" rel="noopener noreferrer" title="GoLang">
+                <img src="https://go.dev/images/favicon-gopher-plain.png" alt="" style="width: 32px; height: 32px;" />
+            </a> 
+            <a class="btn btn-default" href="https://k8s.io" target="_blank" rel="noopener noreferrer" title="Kubernetes">
+                <img src="https://kubernetes.io/images/kubernetes.png" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <!--
+            <a href="https://k8s.gcr.io" target="_blank" rel="noopener noreferrer">
+                <img src=" alt="" style="width: 32px; height: 32px;" />
+            </a> 
+            -->
+            <a class="btn btn-default" href="https://fastapi.tiangolo.com/" target="_blank" rel="noopener noreferrer" title="FastAPI">
+                <img src="https://fastapi.tiangolo.com/img/favicon.png" alt="" style="width: 32px; height: 32px;" />
+            </a>                 
+            <a class="btn btn-default" href="https://angular.dev/" target="_blank" rel="noopener noreferrer" title="Angular">
+                <img src="https://angular.dev/assets/icons/apple-touch-icon.png" alt="" style="width: 32px; height: 32px;" />
+            </a> 
+            <a class="btn btn-default" href="https://www.ansible.com/" target="_blank" rel="noopener noreferrer" title="Ansible">
+                <img src="https://docs.ansible.com/ansible/latest/_static/images/Ansible-Mark-RGB_Black.png" alt="" style="width: 32px; height: 32px;" />
+            </a> 
+            <a class="btn btn-default" href="https://developer.hashicorp.com/" target="_blank" rel="noopener noreferrer" title="Hashicorp / Vault">
+                <img src="https://developer.hashicorp.com/favicon.ico" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://kotlinlang.org/" target="_blank" rel="noopener noreferrer" title="Kotlin / Cart / Fun">
+                <img src="https://kotlinlang.org/assets/images/favicon.svg?v2" alt="" style="width: 32px; height: 32px;" />
+            </a> 
+            <a class="btn btn-default" href="https://www.rust-lang.org/learn" target="_blank" rel="noopener noreferrer" title="Rust">
+                <img src="https://www.rust-lang.org/static/images/apple-touch-icon.png?v=ngJW8jGAmR" alt="" style="width: 32px; height: 32px;" />
+            </a> 
+            <a class="btn btn-default" href="https://doc.rust-lang.org/cargo/" target="_blank" rel="noopener noreferrer" title="Rust">
+                <img src="https://doc.rust-lang.org/cargo/favicon-ba9a2803.png" alt="Cargo logo" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://www.ruby-lang.org/" target="_blank" rel="noopener noreferrer" title="Ruby">
+                <img src="https://www.ruby-lang.org/favicon.ico" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://www.perl.org/" target="_blank" rel="noopener noreferrer" title="Perl">
+                <img src="https://cdn.perl.org/perlweb/favicon.ico" alt="" style="width: 32px; height: 32px;" />
+            </a>                
+            <a class="btn btn-default" href="https://www.scala-lang.org/" target="_blank" rel="noopener noreferrer" title="Scala">
+                <img src="https://www.scala-lang.org/resources/apple-touch-icon.png" alt="" style="width: 32px; height: 32px;" />
+            </a> 
+            <a class="btn btn-default" href="https://www.swift.org/" target="_blank" rel="noopener noreferrer" title="Swift / iOS">
+                <img src="https://www.swift.org/apple-touch-icon-180x180.png" alt="" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://github.com/target/strelka-ui?tab=readme-ov-file" target=_blank" rel="noopener noreferrer" title="Strelka UI">
+                <img src="" alt="Strelka" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://grafana.com/" target="_blank" rel="noopener noreferrer" title="Grafana Observality Dashboards">
+                <img src="https://grafana.com/static/assets/img/fav32.png" alt="Grafana Logo" style="width: 32px; height: 32px;" />
+            </a>
+            </div>
+        </div>
+            <!-- Libraries -->
+            <div class="col-md-4 mb-3">
+                <div class="bg-white p-3 rounded shadow-sm">
+                    <h2>Libraries <a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></h2>
+            <a class="btn btn-default" href="https://www.python.org/" target="_blank" rel="noopener noreferrer" title="Python">
+                <img src="https://www.python.org/static/apple-touch-icon-144x144-precomposed.png" alt="Python Logo" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://jupyter.org/" target="_blank" rel="noopener noreferrer" title="Jupyter Notebooks">
+                <img src="https://jupyter.org/favicon.ico" alt="Jupyter Notebook Logo" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://huggingface.co/docs/huggingface_hub/guides/cli" target="_blank" rel="noopener noreferrer" title="Jupyter Notebooks">
+                <img src="" alt="Hugging Face Logo" style="width: 32px; height: 32px;" />
+            </a>
+            <a class="btn btn-default" href="https://www.tensorflow.org/install" target="_blank" rel="noopener noreferrer" title="Jupyter Notebooks">
+                <img src="" alt="TensorFlow Logo" style="width: 32px; height: 32px;" />
+            </a>
+                </div>
+            </div>
+        </div>
+        <hr />
         <footer>
             <p>&copy; <span id="year"></span> - My Flask Application</p>
         </footer>
