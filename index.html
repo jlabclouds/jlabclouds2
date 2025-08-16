@@ -200,13 +200,62 @@
 
                     <div class="tab-pane fade" id="flask" role="tabpanel">
                         <div class="bg-white p-3 rounded shadow-sm">
-                            <h5>Flask Web Application</h5>
-                            <a class="btn btn-primary w-100 mb-2" href="https://github.com/jlabclouds/Flask/blob/master/README.md" target="_blank">View Documentation</a>
-                            <pre class="bg-light p-3 mt-2">
+                            <a class="btn btn-primary w-100 mb-2" href="https://github.com/jlabclouds/Flask/blob/master/README.md" target="_blank"><h5>Flask</h5></a>
+                            <pre class="bg-light p-3 mt-2" style="height: 200px; overflow-y: auto;">
+        # Virtual Environment Setup
         python -m venv venv
         source venv/bin/activate
+
+        # Essential Packages
         pip install flask
-        flask run</pre>
+        pip install python-dotenv
+        pip install pytest
+        pip install gunicorn
+        pip install uwsgi
+        pip install mod_wsgi
+
+        # Authentication & Security
+        pip install flask-login
+        pip install flask-security
+        pip install PyJWT
+        pip install flask-jwt-extended
+        pip install passlib
+        pip install bcrypt
+
+        # ML/AI/Quantum Packages
+        pip install torch torchvision
+        pip install tensorflow
+        pip install transformers
+        pip install huggingface_hub[cli,torch,tensorflow]
+        pip install scikit-learn
+        pip install pandas numpy
+        pip install qiskit
+        pip install cirq
+        pip install pennylane
+
+        # Monitoring and Logging
+        pip install prometheus_client
+        pip install logging
+        pip install sentry-sdk
+        pip install elastic-apm
+
+        # Databases
+        pip install sqlalchemy
+        pip install flask-sqlalchemy
+        pip install flask-migrate
+        pip install redis
+        pip install celery
+        pip install cx_Oracle
+        pip install oracle-db
+        pip install psycopg2-binary
+        pip install pymongo
+
+        # Server Deployment
+        pip install apache2-utils
+        pip install mod_wsgi
+        pip install supervisor
+
+        flask run</pre> 
                         </div>
                     </div>
 
