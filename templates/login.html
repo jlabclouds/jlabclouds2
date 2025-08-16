@@ -106,7 +106,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const img = document.createElement('img');
-    img.src = "{{ url_for('static', filename='public/flask.png') }}";
+    img.src = "{{ url_for('static', filename='src/assets/react.svg') }}";
     img.alt = "JLabs Logo";
     img.style.position = "fixed";
     img.style.top = "0";
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="modal-overlay" id="loginModal">
     <div class="login-modal">
         <button class="close-btn" onclick="closeModal()" aria-label="Close">&times;</button>
-        <img src="{{ url_for('static', filename='public/flask.png') }}" alt="JLabs Logo" />
+        <img src="{{ url_for('static', filename='src/assets/react.svg') }}" alt="JLabs Logo" />
         <h1>JLabs</h1>
         <div class="error-message" id="loginError"></div>
         <form id="loginForm" method="POST" action="/login" autocomplete="on">
