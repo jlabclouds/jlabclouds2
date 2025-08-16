@@ -206,7 +206,8 @@
         source venv/bin/activate
 
         # Essential Packages
-        pip install flask
+        pip install flask>=3.0.3
+        opentelemetry-distro                       
         pip install python-dotenv
         pip install pytest
         pip install gunicorn
@@ -237,6 +238,8 @@
         pip install logging
         pip install sentry-sdk
         pip install elastic-apm
+        opentelemetry-exporter-otlp-proto-grpc
+        opentelemetry-instrumentation-flask 
 
         # Databases
         pip install sqlalchemy
