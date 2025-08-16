@@ -115,12 +115,76 @@
                 <div class="tab-content mt-3">
                     <div class="tab-pane fade show active" id="aspire" role="tabpanel">
                         <div class="bg-white p-3 rounded shadow-sm">
-                            <h5>Aspire</h5>
-                            <a class="btn btn-primary w-100 mb-2" href="https://github.com/jlabclouds/FrameworkTemplates/blob/main/FrameworkTemplates/ReadMe.md" target="_blank">View Documentation</a>
+                            <a class="btn btn-primary w-100 mb-2" href="https://github.com/jlabclouds/FrameworkTemplates/blob/main/FrameworkTemplates/ReadMe.md" target="_blank"><h5>Aspire</h5></a>
                             <pre class="bg-light p-3 mt-2">
-        dotnet new aspire-starter --name MyProject
-        cd MyProject
-        dotnet run</pre>
+    # Basic .NET Commands
+     dotnet new list
+     dotnet new webapi
+     dotnet build
+     dotnet run
+     dotnet test
+     dotnet publish
+
+     # Package Management
+     dotnet add package Azure.Identity
+     dotnet add package Azure.Security.KeyVault.Secrets
+     dotnet add package Microsoft.ML
+     dotnet add package Microsoft.EntityFrameworkCore
+     dotnet package find -verbosity detailed azure.authentication
+
+     # Project Templates
+     dotnet new aspire-starter --name MyProject
+     dotnet new blazor
+     dotnet new mvc
+
+     # Authentication & Security
+     dotnet add package Microsoft.Identity.Web
+     dotnet add package Azure.Identity
+     dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+
+     # Monitoring & Logging
+     dotnet add package Application Insights
+     dotnet add package Serilog.AspNetCore
+     dotnet add package OpenTelemetry
+
+    # Data & Storage
+    dotnet add package Microsoft.EntityFrameworkCore
+    dotnet add package Microsoft.EntityFrameworkCore.SQLite
+    dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+    dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+    dotnet add package Oracle.EntityFrameworkCore
+    dotnet add package MySql.EntityFrameworkCore
+    dotnet add package Pomelo.EntityFrameworkCore.MySql
+    dotnet add package Azure.Storage.Blobs
+    dotnet add package Microsoft.Azure.Cosmos
+    dotnet add package MongoDB.Driver
+    dotnet add package Cassandra.Driver
+    dotnet add package StackExchange.Redis
+
+     # Messaging & Integration
+     dotnet add package Azure.Messaging.ServiceBus
+     dotnet add package MassTransit
+     dotnet add package RabbitMQ.Client
+
+     # Configuration & Secrets
+     dotnet add package Azure.Security.KeyVault.Secrets
+     dotnet add package Microsoft.Extensions.Configuration.AzureKeyVault
+                                                          
+     # Caching & Performance
+     dotnet add package Microsoft.Extensions.Caching.StackExchangeRedis
+     dotnet add package Polly
+                                                          
+     # ML.NET and AI Packages
+     dotnet add package TorchSharp
+     dotnet add package Microsoft.ML.TorchSharp
+     dotnet add package Microsoft.SemanticKernel
+     dotnet add package Microsoft.ML.FastTree
+     dotnet add package Microsoft.ML.LightGbm
+     dotnet add package PytorchSharp.OpenCL
+     dotnet add package Microsoft.ML.OnnxRuntime
+     dotnet add package Microsoft.ML.Vision
+     dotnet add package Microsoft.ML.Recommender
+     dotnet add package Microsoft.ML.AutoML</pre>
                         </div>
                     </div>
 
