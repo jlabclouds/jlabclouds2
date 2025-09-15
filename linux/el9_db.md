@@ -51,6 +51,7 @@ $ sudo dnf update -y
 ---
 
 [GoldenGate Free](https://docs.oracle.com/en/middleware/goldengate/studio-free/23/uggsf/get-started.html#GUID-42B5358A-A84E-45D2-90CC-D55A474B3678)
+<img src="src/assets/gg1.png">
 ```bash
 $ podman login container-registry.oracle.com
 $ podman pull container-registry.oracle.com/goldengate/goldengate-studio-free:latest
