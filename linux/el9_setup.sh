@@ -10,12 +10,13 @@ sudo yum update -y && sudo yum upgrade -y
 sudo yum install -y NetworkManager-tui nm-connection-editor yum-utils goprofng drgn corelens lynx
 
 # Node.js
+# https://nodejs.org/en/download/current
 # Download and install nvm:
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
 # in lieu of restarting the shell
 \. "$HOME/.nvm/nvm.sh"
 # Download and install Node.js:
-nvm install 22
+nvm install 24
 # Verify the Node.js version:
 node -v # Should print "v22.14.0".
 nvm current # Should print "v22.14.0".
